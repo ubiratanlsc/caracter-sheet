@@ -1,0 +1,16 @@
+{
+  "chars": [
+    {
+      "id": "1",
+      "name": "Mathaius",
+      "nivel": "20"
+    },
+    {
+      "id": "2",
+      "name": "bira",
+      "nivel": "7"
+    }
+  ],
+  "talentos":[],
+  "magias":[]
+}
