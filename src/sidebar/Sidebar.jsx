@@ -28,18 +28,19 @@ function Sidebar(props) {
                   show === index ? <div className="toolTip">
                     {inf.toolTip}
                   </div> : null
-                }{
-                  show === index ? <div className="toolTip">
+                }
+                {/* {
+                  show === index ? <div className="">
                     {inf.toolTip}
                   </div> : null
-                }
+                } */}
               </li>)
             })
           }
         </ul>
       </div>
       <div className="conteudo">
-          {props.children}
+        {props.children}
       </div>
     </div>
 

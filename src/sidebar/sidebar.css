@@ -14,6 +14,7 @@ body{
   flex-grow: 8;
 }
 .sidebar{
+  margin-left: 1em;
   display: flex;
   flex-grow: 1;
   /* width:14em; */
