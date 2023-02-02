@@ -1,6 +1,7 @@
 import React from "react";
 import './personagens.css'
 import { Gi3DHammer } from 'react-icons/gi'
+import wr from '../../assets/img/guerreiro.png'
 
 export const Personagens = () => {
 
@@ -8,7 +9,7 @@ export const Personagens = () => {
     { nome: "Mathaius", icon: <Gi3DHammer size={40} /> },
     { nome: "Bira", icon: <Gi3DHammer size={40} /> },
     { nome: "JohnKoult", icon: <Gi3DHammer size={40} /> },
-    { nome: "JohnKoult", icon: <Gi3DHammer size={40} /> },
+    { nome: "JohnEnder", icon: <Gi3DHammer size={40} /> },
     { nome: "JohnKoult", icon: <Gi3DHammer size={40} /> },
     { nome: "JohnKoult", icon: <Gi3DHammer size={40} /> },
     { nome: "JohnKoult", icon: <Gi3DHammer size={40} /> },
@@ -24,7 +25,7 @@ export const Personagens = () => {
         {card.map((info) =>
           <div className="caracters glass">
             <h2>{info.nome}</h2>
-            <div className="imagem"></div>
+            <img src={wr} alt="wr" className="imagem"/>
             <div className="infor">
               <div className="icon">{info.icon}</div>
               <div className="title">Guerreiro</div>

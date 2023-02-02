@@ -13,6 +13,7 @@
  .all h1{
   font-size: 5em;
   margin-bottom: 0.5em;
+  margin-left: -2em;
  }
  .tela{
   justify-content: flex-start;
@@ -20,10 +21,11 @@
   grid-gap: 0.6em;
   flex-wrap: wrap;
   margin-left: 10em;
+  width:81rem;
  }
 .caracters {
-  width:15rem;
-  height:20rem;
+  width:15em;
+  height:20em;
   /* background-color:#282828; */
   border-radius:8px;
   border: 3px solid rgb(180, 180, 180);
