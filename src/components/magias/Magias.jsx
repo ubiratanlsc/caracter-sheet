@@ -7,28 +7,34 @@ export const Magias = () => {
     const handleActive = (btn) => setIsActive(btn)
     const [isActive2, setIsActive2] = useState(1)
     const handleActive2 = (btn2) => setIsActive2(btn2)
-
     const [value, setValue] = useState([])
     const [magic, setMagic] = useState([])
     const [magics, setMagics] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/magias", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setValue(data)
-                setMagic(...data);
+        (async () => {
+            fetch("http://localhost:5000/magias", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
             })
-            .catch((error) => console.log(error))
+                .then((response) => response.json())
+                .then((data) => {
+                    setValue(data)
+                    setMagic(...data);
+                })
+                .catch((error) => console.log(error))
+            // console.log(magic.tipo);
+            // console.log(value);
+        })();
 
     }, [])
-
-console.log(value[0].nivel1);
+    const array = magic.n1
+    // array.map((index, key) => console.log(index.name));
+    console.log(array);
+    // console.log(value[0].nivel1);
     const niveis = [
+        { id: 0, title: "nivel", },
         { id: 1, title: "nivel", },
         { id: 2, title: "nivel", },
         { id: 3, title: "nivel", },
@@ -39,6 +45,7 @@ console.log(value[0].nivel1);
         { id: 8, title: "nivel", },
         { id: 9, title: "nivel", },
     ]
+    // magic.map(function  (magic) {   return  magic   + " " + niveis  });
     return (
         <div className='tabsContainer'>
             <h1>Magias</h1>
@@ -80,19 +87,23 @@ console.log(value[0].nivel1);
                     </div>
                 </div>
             }
-
             {
-                
-                    isActive2 === 1 && <div className="tabData">
+                niveis.map((ind) =>
+                    isActive2 === ind && console.log(ind + 'ind') && <div className="tabData">
                         <div className="tabContent">
-                       {magic[0].map((index) =>
-                            <h5>{index.nivel1.arcana.id}</h5>
-                            )}
+                            {magic.n`${ind}`?.map((index) => <h5 key={index.id}>{index.name}</h5>)}
+
+
                             <p>Updated: February 19, 2023</p>
                         </div>
                     </div>
-                
-            }
+                    )
+                }
+
+
+
+
+
         </div >
     );
 }

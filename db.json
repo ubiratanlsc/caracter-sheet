@@ -14,10 +14,16 @@
   "talentos": [],
   "magias": [
     {
-      "tipo": {
-        "id": 1, "nome": "arcana",
-        "divina": 2
-      },
+      "tipo": [
+        {
+          "id": 1,
+          "nome": "arcana"
+        },
+        {
+          "id": 2,
+          "nome": "divina"
+        }
+      ],
       "tempo-de-execucao": {
         "padrão": 1,
         "completa": 2
@@ -31,7 +37,7 @@
         "Tempo": 6,
         "Transmutação": 7
       },
-      "nivel0": {
+      "n0": {
         "1": "",
         "id": "1",
         "name": "Consertar",
@@ -39,11 +45,9 @@
         "subtipo": 7,
         "tempo-execucao": 1,
         "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
-      
-       
       },
-      "nivel1": {
-        "arcanas": {
+      "n1": [
+        {
           "id": "1",
           "name": "Consertar",
           "tipo": 1,
@@ -51,31 +55,15 @@
           "tempo-execucao": 1,
           "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
         },
-        "arcana": {
-          "id": "2",
-          "name": "Consertarr",
-          "tipo": 1,
-          "subtipo": 7,
-          "tempo-execucao": 1,
-          "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
-        },
-        "Consertar": {
+        {
           "id": "1",
-          "name": "Consertar",
-          "tipo": 1,
-          "subtipo": 7,
-          "tempo-execucao": 1,
-          "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
-        },
-        "Consertarrrrr": {
-          "id": "1",
-          "name": "Consertar",
+          "name": "alterar-se",
           "tipo": 1,
           "subtipo": 7,
           "tempo-execucao": 1,
           "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
         }
-      }
+      ]
     }
   ]
 }
