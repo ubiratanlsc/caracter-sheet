@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Tabs.css'
 import '../../assets/css/style.css'
 
@@ -8,6 +8,26 @@ export const Magias = () => {
     const [isActive2, setIsActive2] = useState(1)
     const handleActive2 = (btn2) => setIsActive2(btn2)
 
+    const [value, setValue] = useState([])
+    const [magic, setMagic] = useState([])
+    const [magics, setMagics] = useState([])
+    useEffect(() => {
+        fetch("http://localhost:5000/magias", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setValue(data)
+                setMagic(...data);
+            })
+            .catch((error) => console.log(error))
+
+    }, [])
+
+console.log(value[0].nivel1);
     const niveis = [
         { id: 1, title: "nivel", },
         { id: 2, title: "nivel", },
@@ -37,9 +57,8 @@ export const Magias = () => {
                         <div className="btnContainer">
                             {niveis.map((index) =>
                                 <button className={`tabs ${isActive2 === index.id ? 'activeTab' : ''}`}
-                                    onClick={() => handleActive2(index.id ,console.log(index.id))}>{index.title}-{index.id}</button>
+                                    onClick={() => handleActive2(index.id, console.log(index.id))}>{index.title}-{index.id}</button>
                             )}
-                            <h1>AAAAAAAAAAA</h1>
                         </div>
                     </div>
                 </div>}
@@ -60,6 +79,19 @@ export const Magias = () => {
                         <p>Updated: February 19, 2023</p>
                     </div>
                 </div>
+            }
+
+            {
+                
+                    isActive2 === 1 && <div className="tabData">
+                        <div className="tabContent">
+                       {magic[0].map((index) =>
+                            <h5>{index.nivel1.arcana.id}</h5>
+                            )}
+                            <p>Updated: February 19, 2023</p>
+                        </div>
+                    </div>
+                
             }
         </div >
     );
