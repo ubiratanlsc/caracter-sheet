@@ -8,48 +8,16 @@ body{
   font-size:0.85vw;
 }
 .tudos{
-  display:flex;
+  display:grid;
+  grid-template-columns: 1fr 10fr;
 }
 .conteudo{
-  flex-grow: 8;
 }
 .sidebar{
   margin-left: 1em;
   display: flex;
   flex-grow: 1;
-  /* width:14em; */
   height:100vh;
-  /* margin:1vh 1vh 0 1vh; */
-}
-
-img {
-  width:1.2em;
-  margin-right:0.4em;
-}
-button {
-  width:10.5em;
-  color:white;
-  font-family: 'SansaPro';
-  display:flex;
-  height:2em;
-  background-color:#282828;
-  boder:none;
-  border-radius:8px;
-  margin-bottom:10px;
-  border:none;
-  /* text-align:center; */
-  font-size: 1.2em;
-  font-weight: 100;
-  align-items: center;
-  /* justify-content: start; */
-
-}
-button:hover{
-  background-color: #2a3742;
-}
-.w-6{
-  filter: invert(90%);
-  /* margin-right:0.5em; */
 }
 .siders{
   display:flex;

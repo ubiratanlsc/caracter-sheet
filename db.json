@@ -11,6 +11,41 @@
       "nivel": "7"
     }
   ],
-  "talentos":[],
-  "magias":[]
+  "talentos": [],
+  "magias": [
+    {
+      "tipo": {
+        "arcana": 1,
+        "divina": 2
+      },
+      "tempo-de-execucao":{
+        "padrão": 1,
+        "completa": 2
+      },
+      "descritores":{
+        "Abjuração": 1,
+        "Encantamento": 2,
+        "Ilusão": 3,
+        "Invocação": 4,
+        "Necromancia": 5,
+        "Tempo": 6,
+        "Transmutação": 7        
+      }
+  },
+    {
+      "nivel-0": {
+        "Consertar": {
+          "id": "1",
+          "name": "Consertar",
+          "tipo": 1,
+          "subtipo": 7,
+          "tempo-execucao": 1,
+          "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
+        }
+      },
+      "nivel-1": {
+        "misseis magicos": ""
+      }
+    }
+  ]
 }
