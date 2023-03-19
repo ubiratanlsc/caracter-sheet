@@ -45,6 +45,8 @@ export const Magias = () => {
         { id: 8, title: "nivel", },
         { id: 9, title: "nivel", },
     ]
+    let x = 'n1'
+    console.log(magic.n1);
     // magic.map(function  (magic) {   return  magic   + " " + niveis  });
     return (
         <div className='tabsContainer'>
@@ -88,10 +90,10 @@ export const Magias = () => {
                 </div>
             }
             {
-                niveis.map((ind) =>
-                    isActive2 === ind && console.log(ind + 'ind') && <div className="tabData">
+                niveis.map((ind) => 
+                    isActive2 === ind.id && <div className="tabData">
                         <div className="tabContent">
-                            {magic.n`${ind}`?.map((index) => <h5 key={index.id}>{index.name}</h5>)}
+                            {magic.n1.map((index) => <h5 key={index.id}>{index.name}</h5>)}
 
 
                             <p>Updated: February 19, 2023</p>
