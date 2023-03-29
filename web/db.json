@@ -1,0 +1,55 @@
+{
+  "chars": [
+    {
+      "id": "1",
+      "name": "Mathaius",
+      "nivel": "20"
+    },
+    {
+      "id": "2",
+      "name": "bira",
+      "nivel": "7"
+    }
+  ],
+  "talentos": [],
+  "magias": [
+    {
+      "n0": [
+        {
+          "id": "1",
+          "name": "misseis",
+          "tipo": 1,
+          "subtipo": 7,
+          "tempo-execucao": 1,
+          "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
+        },
+        {
+          "id": "2",
+          "name": "bla bla bla",
+          "tipo": 1,
+          "subtipo": 7,
+          "tempo-execucao": 1,
+          "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
+        }
+      ],
+      "n1": [
+        {
+          "id": "1",
+          "name": "Consertar",
+          "tipo": 1,
+          "subtipo": 7,
+          "tempo-execucao": 1,
+          "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
+        },
+        {
+          "id": "1",
+          "name": "alterar-se",
+          "tipo": 2,
+          "subtipo": 7,
+          "tempo-execucao": 1,
+          "descricao": "Estamagia reparapequenas falhas em um objeto mundano. Pode colar um frasco de cerâmica quebrado, unir elos de uma corrente ou costurar uma roupa rasgada, entre outros pequenos reparos. Consertar não afeta itens mágicos."
+        }
+      ]
+    }
+  ]
+}

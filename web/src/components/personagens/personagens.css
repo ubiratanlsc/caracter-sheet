@@ -1,0 +1,65 @@
+.glass{
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.6px);
+  -webkit-backdrop-filter: blur(8.6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+ }
+ .all{
+  text-align: center;
+  margin-top: 4em;
+ }
+ .all h1{
+  font-size: 5em;
+  margin-bottom: 0.5em;
+  margin-left: -2em;
+ }
+ .tela{
+  justify-content: flex-start;
+  display:flex;
+  grid-gap: 0.6em;
+  flex-wrap: wrap;
+  margin-left: 10em;
+  width:81em;
+ }
+.caracters {
+  width:15em;
+  height:20em;
+  /* background-color:#282828; */
+  border-radius:8px;
+  border: 3px solid rgb(180, 180, 180);
+}
+.caracters h2 {
+  text-align:center;
+  margin-top:0.6em;
+}
+.imagem{
+  background-color:black;
+  width:12em;
+  height:12em;
+  margin: 0.8em auto 0;
+  border-radius: 8px;
+}
+.infor {
+  display:flex;
+  /* background-color: red; */
+  width:12em;
+  /* justify-content: space-around; */
+  align-items: center;
+  grid-gap: 0.6em;
+  margin: 0.8em auto 0;
+}
+.icon{
+  border-radius:8px;
+  border: 3px solid rgb(180, 180, 180);
+}
+.title {
+  width:18em;
+  height:2.6em;
+  border-radius:8px;
+  border: 3px solid rgb(180, 180, 180);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
