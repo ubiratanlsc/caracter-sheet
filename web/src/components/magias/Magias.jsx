@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import './Tabs.css'
-import '../../assets/css/style.css'
+import './magic.css'
+// import '../../assets/css/style.css'
 import api from "../../services/api";
 
 export const Magias = () => {
     const [magic, setMagic] = useState([])
+    const [accActive, setAccActive] = useState([])
     const handleActive = (btn) => setIsActive(btn)
     const handleActive2 = (btn2) => setIsActive2(btn2)
     const handleActive3 = (btn3) => setIsActive3(btn3)
@@ -14,16 +16,33 @@ export const Magias = () => {
     const [isActive3, setIsActive3] = useState()
     const [isActive4, setIsActive4] = useState(1)
     const [isActive5, setIsActive5] = useState()
+    const [teste, setTeste] = useState([])
 
     useEffect(() => {
         api.get("magias").then(({ data }) => {
             setMagic(data)
         })
-        // console.log(magic[0]._id);        
+             
     }, [])
+  
+    // for (let i = 0; i < 2; i++) {
+    //     setTeste([i, i + 1])
+    //     // console.log(teste[0]); 
+        
+    // }
     // console.log(isActive3); 9,24,32,14,52,2
     const arcanas = magic.filter(tipo => (tipo.tipo == "arcana"))
+    console.log(arcanas);
     const divinas = magic.filter(tipo => (tipo.tipo == "divina"))
+    const acordActive = (number, id) => {
+        if (accActive[0] === 0) {
+            setAccActive([number, id])
+            // console.log(accActive);
+        } else {
+            setAccActive([0])
+        }
+    }
+
 
     const niveis = [
         { id: 0, title: "nivel", sigla: "n0" },
@@ -85,19 +104,25 @@ export const Magias = () => {
                 </div>
             }
             {
-                niveis.map((ind, indexx) =>isActive === 1 && isActive2 === ind.id && <div className="tabData" key={indexx} >
+                niveis.map((ind, indexx) => isActive === 1 && isActive2 === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
                         {arcanas?.map((index, indce) => isActive2 === index.nivel &&
-                        <h5 key={indce}>{index.titulo}</h5>)}
-                        <p>Updated: February 19, 2023</p> 
+                            <div className="magic-titulo" key={indce} onClick={() => acordActive(1 ,index._id, console.log(accActive[0])) }> <span>{index.titulo}</span> </div>
+                        
+                        )}
+                        {/* const arcanas = magic.filter(tipo => (tipo.tipo == "arcana")) */}
+                        {accActive[0] === 1 ? <div className="acord">
+                            <div className="acord-titulo">index.titulo</div>
+                            <p>index.benefici</p>
+                        </div> : null}
                     </div>
                 </div>)
             }
             {
                 niveis.map((ind, indexx) => isActive === 2 && isActive4 === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
-                        {divinas?.map((index, indce) => isActive4 === index.nivel && 
-                        <h5 key={indce}>{index.titulo}</h5>)}
+                        {divinas?.map((index, indce) => isActive4 === index.nivel &&
+                            <h5 key={indce}>{index.titulo}</h5>)}
                         <p>Updated: February 19, 2023</p>
                         <p>teste divino</p>
                     </div>

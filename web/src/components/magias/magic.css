@@ -1,0 +1,5 @@
+.magic-titulo{
+  background-color: red; height:30px; width:300px;
+  border-radius: 6px; display:flex; justify-content: center;
+  align-itens: center; margin-top: 5px; align-items: center;
+}
