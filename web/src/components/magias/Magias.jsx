@@ -3,12 +3,15 @@ import './Tabs.css'
 import './magic.css'
 // import '../../assets/css/style.css'
 import api from "../../services/api";
+import Card from "../cards/Card";
 
 export const Magias = () => {
     const [magic, setMagic] = useState([])
-    const [accActive, setAccActive] = useState([])
-    const handleActive = (btn) => setIsActive(btn)
-    const handleActive2 = (btn2) => setIsActive2(btn2)
+    const [accActive, setAccActive] = useState(0)
+    const [arcanaAt, setArcanaAt] = useState("")
+    const [divinaAt, setDivinaAt] = useState("")
+    const typeActive = (btn) => setIsActive(btn)
+    const nivelActive = (btn2) => setIsActive2(btn2)
     const handleActive3 = (btn3) => setIsActive3(btn3)
     const handleActive4 = (btn4) => setIsActive4(btn4)
     const [isActive, setIsActive] = useState(1)
@@ -16,33 +19,32 @@ export const Magias = () => {
     const [isActive3, setIsActive3] = useState()
     const [isActive4, setIsActive4] = useState(1)
     const [isActive5, setIsActive5] = useState()
-    const [teste, setTeste] = useState([])
 
     useEffect(() => {
         api.get("magias").then(({ data }) => {
             setMagic(data)
         })
-             
+
     }, [])
-  
-    // for (let i = 0; i < 2; i++) {
-    //     setTeste([i, i + 1])
-    //     // console.log(teste[0]); 
-        
-    // }
-    // console.log(isActive3); 9,24,32,14,52,2
     const arcanas = magic.filter(tipo => (tipo.tipo == "arcana"))
-    console.log(arcanas);
     const divinas = magic.filter(tipo => (tipo.tipo == "divina"))
-    const acordActive = (number, id) => {
-        if (accActive[0] === 0) {
-            setAccActive([number, id])
-            // console.log(accActive);
+    const acordActive = (index) => {
+        if (accActive === 0) {
+            setAccActive(index)
         } else {
-            setAccActive([0])
+            setAccActive(0)
         }
     }
-
+    function acordvisible(id, tipo) {
+        if (tipo == "arcana") {
+            setArcanaAt(...arcanas.filter(tipo => (tipo._id == id)))
+        }
+        else {
+            setDivinaAt(...divinas.filter(tipo => (tipo._id == id)))
+        }
+    }
+    console.log(arcanaAt);
+    // console.log(mostra);
 
     const niveis = [
         { id: 0, title: "nivel", sigla: "n0" },
@@ -63,11 +65,11 @@ export const Magias = () => {
             <h1>Magias</h1>
             <div className="btnContainer">
                 <button className={`tabs ${isActive === 1 ? 'activeTab' : ''}`}
-                    onClick={() => handleActive(1)}>Arcanas</button>
+                    onClick={() => typeActive(1)}>Arcanas</button>
                 <button className={`tabs ${isActive === 2 ? 'activeTab' : ''}`}
-                    onClick={() => handleActive(2)}>Divinas</button>
+                    onClick={() => typeActive(2)}>Divinas</button>
                 <button className={`tabs ${isActive === 3 ? 'activeTab' : ''}`}
-                    onClick={() => handleActive(3)}>Jutsus</button>
+                    onClick={() => typeActive(3)}>Jutsus</button>
             </div>
 
             {
@@ -76,7 +78,7 @@ export const Magias = () => {
                         <div className="btnContainer">
                             {niveis.map((index, indice) =>
                                 <button className={`tabs ${isActive2 === index.id ? 'activeTab' : ''}`} key={indice}
-                                    onClick={() => handleActive2(index.id)}>{index.title}-{index.id}</button>
+                                    onClick={() => nivelActive(index.id)}>{index.title}-{index.id}</button>
                             )}
                         </div>
                     </div>
@@ -87,7 +89,7 @@ export const Magias = () => {
                         <div className="btnContainer">
                             {niveis.map((index, indice) =>
                                 <button className={`tabs ${isActive4 === index.id ? 'activeTab' : ''}`} key={indice}
-                                    onClick={() => handleActive4(index.id, console.log(index.id))}>{index.title}-{index.id}</button>
+                                    onClick={() => handleActive4(index.id)}>{index.title}-{index.id}</button>
                             )}
                         </div>
                     </div>
@@ -107,17 +109,35 @@ export const Magias = () => {
                 niveis.map((ind, indexx) => isActive === 1 && isActive2 === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
                         {arcanas?.map((index, indce) => isActive2 === index.nivel &&
-                            <div className="magic-titulo" key={indce} onClick={() => acordActive(1 ,index._id, console.log(accActive[0])) }> <span>{index.titulo}</span> </div>
-                        
+                            <div className="magic-titulo" key={indce} onClick={() => acordActive(1, acordvisible(index._id, index.tipo))}>
+                                <span>{index.titulo}</span>
+                            </div> &&  <Card props={accActive}/>
                         )}
                         {/* const arcanas = magic.filter(tipo => (tipo.tipo == "arcana")) */}
-                        {accActive[0] === 1 ? <div className="acord">
-                            <div className="acord-titulo">index.titulo</div>
-                            <p>index.benefici</p>
+                        {accActive === 1 ? <div className="acord">
+                            <div className="acord-titulo">{arcanaAt.titulo}</div>
+                            <p>{arcanaAt.beneficio}</p>
                         </div> : null}
                     </div>
                 </div>)
             }
+            {/* {
+                niveis.map((ind, indexx) => isActive === 1 && isActive2 === ind.id && <div className="tabData" key={indexx} >
+                    <div className="tabContent" key={ind.title}>
+                        {arcanas?.map((index, indce) => isActive2 === index.nivel &&
+                            <div className="magic-titulo" key={indce} onClick={() => acordActive(1, acordvisible(index._id, index.tipo))}> <span>{index.titulo}</span> </div>
+&& <Card props={accActive}/>
+                        )}
+                        {accActive === 1 ?
+                        <Card props={1}/> &&
+                            <div className="acord">
+                                <div className="acord-titulo">{arcanaAt.titulo}</div>
+                                <p>{arcanaAt.beneficio}</p>
+                            </div> : null
+                        }
+                    </div>
+                </div>)
+            } */}
             {
                 niveis.map((ind, indexx) => isActive === 2 && isActive4 === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
