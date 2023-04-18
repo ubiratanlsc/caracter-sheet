@@ -7,7 +7,7 @@ import Card from "../cards/Card";
 
 export const Magias = () => {
     const [magic, setMagic] = useState([])
-    const [accActive, setAccActive] = useState(0)
+    const [accActive, setAccActive] = useState(1)
     const [arcanaAt, setArcanaAt] = useState("")
     const [divinaAt, setDivinaAt] = useState("")
     const typeActive = (btn) => setIsActive(btn)
@@ -43,7 +43,7 @@ export const Magias = () => {
             setDivinaAt(...divinas.filter(tipo => (tipo._id == id)))
         }
     }
-    console.log(arcanaAt);
+    // console.log(arcanaAt);
     // console.log(mostra);
 
     const niveis = [
