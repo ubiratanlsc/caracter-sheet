@@ -1,0 +1,81 @@
+html, body{
+  height:100%
+}
+body{
+  display: grid;
+  place-items:center;
+  background-color: #020e26;
+}
+.btn {
+  font-size:16px; font-family:inherit; font-weight:500;
+  padding: 12px 20px; border: none; border-radius: 8px;
+  cursor: pointer;
+}
+.btn-primary{ background-color: #3bd9d9; }
+.btn-cancel{ background-color: #e2e2e2; }
+
+.modal{
+display: flex; justify-content: center; align-items: center;
+position: fixed; top:0; left: 0; right: 0; bottom: 0;
+background-color:rgba(0,0,0,0); z-index: -1; overflow: auto; transition: 0.25s;
+}
+
+.modal.show {
+  background-color:rgba(0, 0, 0, 0.6);
+  z-index: 2; }
+  
+.modal .modal-content {
+  background-color: #2e2f36;
+  width: 512px;
+  padding: 24px;
+  margin : 0 8px;
+  border-radius: 16px;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.25s; 
+  }
+  .modal.show .modal-content {
+  opacity: 1;
+   }
+   .modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    
+    .modal .modal-header .modal-close {
+    color : #ffffff ;
+    font-weight: 400;
+    padding: 4px;
+    margin: 0;
+    cursor: pointer;
+    }
+    
+    
+    .modal .modal-header .title {
+    color : #ffffff ;
+    font-weight:500;
+    margin: 0;
+    }
+    .modal .modal-body {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    gap: 16px; 
+    }
+    .modal .modal-body .form-control { display: flex; flex-direction: column; }
+    .modal .modal-body input {
+      font-size: 14px;
+      font-family: inherit;
+      padding: 12px 20px;
+      outline: none;
+      border: none;
+      border-radius: 8px;
+      }
+      .modal .modal-body label {
+      color : #ffffff;
+      margin-bottom: 4px;
+      }
+      .modal .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px; }

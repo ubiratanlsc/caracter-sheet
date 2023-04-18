@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function Card({props}) {
- console.log(props);
   return (
     <>
       {props == 1 ?

@@ -4,13 +4,13 @@ import Sidebar from './sidebar/Sidebar';
 import '../src/assets/css/style.css'
 import { Personagens } from './components/personagens/Personagens';
 import { Magias } from './components/magias/Magias';
+import Modal from './components/modal/Modal';
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <Sidebar>
-        <Magias />
+        <Modal />
       </Sidebar>
     </>
   )
