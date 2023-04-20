@@ -24,6 +24,7 @@ body{
 .tabs{
   margin-top:0.5em;
   margin-right:0.5em;
+  margin-bottom:0.8em;
   border: solid rgb(180, 180, 180);
   border-width:3px 3px 0px 3px;
   width: 10em;
@@ -35,4 +36,9 @@ body{
 .activeTab{
   background: rgba(255,255,255,0.3);
   color:  rgba(0,0,0,1);
+}
+.tabContent{
+  display: flex;
+  row-gap:1%;
+  column-gap:1%;
 }

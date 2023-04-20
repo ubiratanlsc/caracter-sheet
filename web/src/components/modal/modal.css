@@ -1,17 +1,10 @@
-html, body{
-  height:100%
-}
-body{
-  display: grid;
-  place-items:center;
-  background-color: #020e26;
-}
 .btn {
   font-size:16px; font-family:inherit; font-weight:500;
   padding: 12px 20px; border: none; border-radius: 8px;
   cursor: pointer;
 }
-.btn-primary{ background-color: #3bd9d9; }
+.btn-primary{ background: rgba(255,255,255,0.3);
+color: #fff;}
 .btn-cancel{ background-color: #e2e2e2; }
 
 .modal{
@@ -25,7 +18,9 @@ background-color:rgba(0,0,0,0); z-index: -1; overflow: auto; transition: 0.25s;
   z-index: 2; }
   
 .modal .modal-content {
-  background-color: #2e2f36;
+  /* background-color: #2e2f36; */
+  background: rgba(255,255,255,0.3);
+  border: 3px solid rgb(180, 180, 180);
   width: 512px;
   padding: 24px;
   margin : 0 8px;
@@ -39,20 +34,42 @@ background-color:rgba(0,0,0,0); z-index: -1; overflow: auto; transition: 0.25s;
    }
    .modal .modal-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center; }
     
-    .modal .modal-header .modal-close {
+    .modal .modal-header, .modal-close {
     color : #ffffff ;
     font-weight: 400;
     padding: 4px;
     margin: 0;
+    }
+    .modal-close{
+    float: right;
     cursor: pointer;
     }
+    .form-control {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      align-content: space-around;
+    }
+    .item {
+      margin: 4px;
+      padding: 4px 30px 4px 0px;
+      /* background: tomato; */
+      /* background:#2e2f36; */
+      text-align: center;
+      font-size: 1.2em;
+      border-radius: 6px;
+      color:black;
+    }
+    .descricao{
+      color:black;
+    }
     
-    
-    .modal .modal-header .title {
-    color : #ffffff ;
+    .modal .modal-header .title-magia {
+    color : black ;
+    font-size :30px;
     font-weight:500;
     margin: 0;
     }
@@ -62,7 +79,7 @@ background-color:rgba(0,0,0,0); z-index: -1; overflow: auto; transition: 0.25s;
     padding: 24px 0;
     gap: 16px; 
     }
-    .modal .modal-body .form-control { display: flex; flex-direction: column; }
+    .modal .modal-body { display: flex; flex-direction: column; }
     .modal .modal-body input {
       font-size: 14px;
       font-family: inherit;
@@ -77,5 +94,5 @@ background-color:rgba(0,0,0,0); z-index: -1; overflow: auto; transition: 0.25s;
       }
       .modal .modal-footer {
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
       gap: 8px; }

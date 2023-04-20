@@ -13,26 +13,27 @@ const Modal = ({magia, nivel, te, alcance, alvo, duracao, teste, livro, descrica
       <button className="btn btn-primary" onClick={toggle}>{magia}</button>
       <div className={`modal ${show && "show"}`} onClick={toggle}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+           <h2 className="modal-close" onClick={toggle}>X</h2>
           <div className="modal-header">
-            <div className="title">{magia}</div>
-            <h2 className="modal-close" onClick={toggle}>X</h2>
+            <p className="title-magia">{magia}</p>
           </div>
           <div className="modal-body">
             <div className="form-control">
-              <label>Tipo: {tipo} </label>
-              <label>Nível: {nivel}</label>
-              <label>Tempo de Execução: {te}</label>
-              <label>Alcance: {alcance}</label>
-              <label>Alvo: {alvo}</label>
-              <label>Duração: {duracao}</label>
-              <label>Teste de Resistencia: {teste}</label>
-              <label>Livro Referencia: {livro}</label>
-              <label>Descrição: {descricao}</label>
-              <input type="text" placeholder="Digite seu nome" />
+              <div className="item">Tipo: {tipo};</div>
+              <div className="item">Nível: {nivel};</div>
+              <div className="item">Tempo de Execução: Ação padrão{te};</div>
+              <div className="item">Alcance: 9 mestros{alcance};</div>
+              <div className="item">Alvo: até 5 criaturas{alvo};</div>
+              <div className="item">Duração: 1 minuto{duracao};</div>
+              <div className="item">Teste de Resistencia: Reflexos{teste};</div>
+              <div className="item">Livro Referencia: {livro};</div>
+              
+              {/* <input type="text" placeholder="Digite seu nome" /> */}
             </div>
             <div className="modal-footer">
-              <button className="btn btn-cancel">Cancel</button>
-              <button className="btn btn-primary">Salvar</button>
+              <div className="descricao">Descrição: {descricao}</div>
+              {/* <button className="btn btn-cancel">Cancel</button>
+              <button className="btn btn-primary">Salvar</button> */}
             </div>
           </div>
         </div>

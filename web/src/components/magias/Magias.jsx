@@ -9,16 +9,14 @@ import Modal from "../modal/Modal";
 export const Magias = () => {
     const [magic, setMagic] = useState([])
     const [accActive, setAccActive] = useState(1)
-    const [arcanaAt, setArcanaAt] = useState("")
-    const [divinaAt, setDivinaAt] = useState("")
     const typeActive = (btn) => setIsActive(btn)
-    const nivelActive = (btn2) => setIsActive2(btn2)
+    const nivelActive = (btn2) => setArcActive(btn2)
     const handleActive3 = (btn3) => setIsActive3(btn3)
-    const handleActive4 = (btn4) => setIsActive4(btn4)
+    const nivelActiveDivina = (btn4) => setDivActive(btn4)
     const [isActive, setIsActive] = useState(1)
-    const [isActive2, setIsActive2] = useState(1)
+    const [arcActive, setArcActive] = useState(1)
     const [isActive3, setIsActive3] = useState()
-    const [isActive4, setIsActive4] = useState(1)
+    const [divActive, setDivActive] = useState(1)
     const [isActive5, setIsActive5] = useState()
 
     useEffect(() => {
@@ -28,7 +26,6 @@ export const Magias = () => {
 
     }, [])
     const arcanas = magic.filter(tipo => (tipo.tipo == "arcana"))
-    console.log(arcanas);
     const divinas = magic.filter(tipo => (tipo.tipo == "divina"))
     const acordActive = (index) => {
         if (accActive === 0) {
@@ -79,7 +76,7 @@ export const Magias = () => {
                     <div className="tabContent">
                         <div className="btnContainer">
                             {niveis.map((index, indice) =>
-                                <button className={`tabs ${isActive2 === index.id ? 'activeTab' : ''}`} key={indice}
+                                <button className={`tabs ${arcActive === index.id ? 'activeTab' : ''}`} key={indice}
                                     onClick={() => nivelActive(index.id)}>{index.title}-{index.id}</button>
                             )}
                         </div>
@@ -90,8 +87,8 @@ export const Magias = () => {
                     <div className="tabContent">
                         <div className="btnContainer">
                             {niveis.map((index, indice) =>
-                                <button className={`tabs ${isActive4 === index.id ? 'activeTab' : ''}`} key={indice}
-                                    onClick={() => handleActive4(index.id)}>{index.title}-{index.id}</button>
+                                <button className={`tabs ${divActive === index.id ? 'activeTab' : ''}`} key={indice}
+                                    onClick={() => nivelActiveDivina(index.id)}>{index.title}-{index.id}</button>
                             )}
                         </div>
                     </div>
@@ -108,41 +105,25 @@ export const Magias = () => {
                 </div>
             }
             {
-                niveis.map((ind, indexx) => isActive === 1 && isActive2 === ind.id && <div className="tabData" key={indexx} >
+                niveis.map((ind, indexx) => isActive === 1 && arcActive === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
-                        {arcanas?.map((index, indce) => isActive2 === index.nivel &&
-                        <Modal magia={index.titulo} nivel={index.nivel} tipo={index.tipo} descricao={index.beneficio} livro={index.livro}/>
-                            // <div className="magic-titulo" key={indce} onClick={() => acordActive(1, acordvisible(index._id, index.tipo))}>
-                            //     <span>{index.titulo}</span>
-                            // </div>
+                        {arcanas?.map((index, indce) => arcActive === index.nivel &&
+                            <Modal magia={index.titulo} nivel={index.nivel} tipo={index.tipo} descricao={index.beneficio} livro={index.livro} />
                         )}
-                        {/* const arcanas = magic.filter(tipo => (tipo.tipo == "arcana")) */}
-                        {accActive === 1 ? <div className="acord">
-                            <div className="acord-titulo">{arcanaAt.titulo}</div>
-                            <p>{arcanaAt.beneficio}</p>
-                        </div> : null}
                     </div>
                 </div>)
             }
-            {/* {
-                niveis.map((ind, indexx) => isActive === 1 && isActive2 === ind.id && <div className="tabData" key={indexx} >
+            {
+                niveis.map((ind, indexx) => isActive === 2 && divActive === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
-                        {arcanas?.map((index, indce) => isActive2 === index.nivel &&
-                            <div className="magic-titulo" key={indce} onClick={() => acordActive(1, acordvisible(index._id, index.tipo))}> <span>{index.titulo}</span> </div>
-&& <Card props={accActive}/>
+                        {divinas?.map((index, indce) => divActive === index.nivel &&
+                            <Modal magia={index.titulo} nivel={index.nivel} tipo={index.tipo} descricao={index.beneficio} livro={index.livro} />
                         )}
-                        {accActive === 1 ?
-                        <Card props={1}/> &&
-                            <div className="acord">
-                                <div className="acord-titulo">{arcanaAt.titulo}</div>
-                                <p>{arcanaAt.beneficio}</p>
-                            </div> : null
-                        }
                     </div>
                 </div>)
-            } */}
+            }
             {
-                niveis.map((ind, indexx) => isActive === 2 && isActive4 === ind.id && <div className="tabData" key={indexx} >
+                niveis.map((ind, indexx) => isActive === 3 && isActive4 === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
                         {divinas?.map((index, indce) => isActive4 === index.nivel &&
                             <h5 key={indce}>{index.titulo}</h5>)}
