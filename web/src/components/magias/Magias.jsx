@@ -4,6 +4,7 @@ import './magic.css'
 // import '../../assets/css/style.css'
 import api from "../../services/api";
 import Card from "../cards/Card";
+import Modal from "../modal/Modal";
 
 export const Magias = () => {
     const [magic, setMagic] = useState([])
@@ -27,6 +28,7 @@ export const Magias = () => {
 
     }, [])
     const arcanas = magic.filter(tipo => (tipo.tipo == "arcana"))
+    console.log(arcanas);
     const divinas = magic.filter(tipo => (tipo.tipo == "divina"))
     const acordActive = (index) => {
         if (accActive === 0) {
@@ -109,9 +111,10 @@ export const Magias = () => {
                 niveis.map((ind, indexx) => isActive === 1 && isActive2 === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
                         {arcanas?.map((index, indce) => isActive2 === index.nivel &&
-                            <div className="magic-titulo" key={indce} onClick={() => acordActive(1, acordvisible(index._id, index.tipo))}>
-                                <span>{index.titulo}</span>
-                            </div> &&  <Card props={accActive}/>
+                        <Modal magia={index.titulo} nivel={index.nivel} tipo={index.tipo} descricao={index.beneficio} livro={index.livro}/>
+                            // <div className="magic-titulo" key={indce} onClick={() => acordActive(1, acordvisible(index._id, index.tipo))}>
+                            //     <span>{index.titulo}</span>
+                            // </div>
                         )}
                         {/* const arcanas = magic.filter(tipo => (tipo.tipo == "arcana")) */}
                         {accActive === 1 ? <div className="acord">
