@@ -21,7 +21,7 @@ background-color:rgba(0,0,0,0); z-index: -1; overflow: auto; transition: 0.25s;
   /* background-color: #2e2f36; */
   background: rgba(255,255,255,0.3);
   border: 3px solid rgb(180, 180, 180);
-  width: 512px;
+  width: 80em;
   padding: 24px;
   margin : 0 8px;
   border-radius: 16px;
@@ -62,9 +62,16 @@ background-color:rgba(0,0,0,0); z-index: -1; overflow: auto; transition: 0.25s;
       font-size: 1.2em;
       border-radius: 6px;
       color:black;
+      text-transform: capitalize;
+    }
+    .item span {
+      font-weight: bold;
     }
     .descricao{
       color:black;
+      font-weight: bold;
+      font-size:1.5em;
+      text-transform: capitalize;
     }
     
     .modal .modal-header .title-magia {

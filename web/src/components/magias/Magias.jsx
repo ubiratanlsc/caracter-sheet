@@ -106,9 +106,9 @@ export const Magias = () => {
             }
             {
                 niveis.map((ind, indexx) => isActive === 1 && arcActive === ind.id && <div className="tabData" key={indexx} >
-                    <div className="tabContent" key={ind.title}>
-                        {arcanas?.map((index, indce) => arcActive === index.nivel &&
-                            <Modal magia={index.titulo} nivel={index.nivel} tipo={index.tipo} descricao={index.beneficio} livro={index.livro} />
+                    <div className="tabContent" key={ind.id}>
+                        {arcanas?.map((index) => arcActive === index.nivel &&
+                            <Modal key={index.titulo} magia={index.titulo} nivel={index.nivel} tipo={index.tipo} descricao={index.beneficio} livro={index.livro} />
                         )}
                     </div>
                 </div>)
@@ -116,13 +116,13 @@ export const Magias = () => {
             {
                 niveis.map((ind, indexx) => isActive === 2 && divActive === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
-                        {divinas?.map((index, indce) => divActive === index.nivel &&
-                            <Modal magia={index.titulo} nivel={index.nivel} tipo={index.tipo} descricao={index.beneficio} livro={index.livro} />
+                        {divinas?.map((index) => divActive === index.nivel &&
+                            <Modal key={index.titulo} magia={index.titulo} nivel={index.nivel} tipo={index.tipo} descricao={index.beneficio} livro={index.livro} />
                         )}
                     </div>
                 </div>)
             }
-            {
+            {/* {
                 niveis.map((ind, indexx) => isActive === 3 && isActive4 === ind.id && <div className="tabData" key={indexx} >
                     <div className="tabContent" key={ind.title}>
                         {divinas?.map((index, indce) => isActive4 === index.nivel &&
@@ -133,7 +133,7 @@ export const Magias = () => {
                 </div>)
 
 
-            }
+            } */}
 
 
 

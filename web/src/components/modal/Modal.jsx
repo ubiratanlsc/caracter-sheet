@@ -19,14 +19,14 @@ const Modal = ({magia, nivel, te, alcance, alvo, duracao, teste, livro, descrica
           </div>
           <div className="modal-body">
             <div className="form-control">
-              <div className="item">Tipo: {tipo};</div>
-              <div className="item">Nível: {nivel};</div>
-              <div className="item">Tempo de Execução: Ação padrão{te};</div>
-              <div className="item">Alcance: 9 mestros{alcance};</div>
-              <div className="item">Alvo: até 5 criaturas{alvo};</div>
-              <div className="item">Duração: 1 minuto{duracao};</div>
-              <div className="item">Teste de Resistencia: Reflexos{teste};</div>
-              <div className="item">Livro Referencia: {livro};</div>
+              <div className="item"><span>Tipo: </span>{tipo};</div>
+              <div className="item"><span>Nível: </span>{nivel};</div>
+              <div className="item"><span>Tempo de Execução: </span>{te};</div>
+              <div className="item"><span>Alcance: </span>{alcance};</div>
+              <div className="item"><span>Alvo: </span>{alvo};</div>
+              <div className="item"><span>Duração: </span>{duracao};</div>
+              <div className="item"><span>Teste de Resistencia: </span>{teste};</div>
+              <div className="item"><span>Livro Referencia: </span>{livro};</div>
               
               {/* <input type="text" placeholder="Digite seu nome" /> */}
             </div>
