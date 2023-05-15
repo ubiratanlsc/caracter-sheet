@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import './sidebar.css'
 import { BiHomeAlt, BiBookBookmark, BiShieldPlus } from 'react-icons/bi'
 import './ToolTip.css'
+import { details } from "../components/personagens/Personagens";
 
 function Sidebar(props) {
   const [show, setShow] = useState()
   const info = [
-    { icon: <BiHomeAlt size={40} />, toolTip: "Inicio" },
-    { icon: <BiBookBookmark size={40} />, toolTip: "Magias" },
-    { icon: <BiShieldPlus size={40} />, toolTip: "Talentos" }
+    { icon: <BiHomeAlt style={details} />, toolTip: "Inicio" },
+    { icon: <BiBookBookmark style={details} />, toolTip: "Magias" },
+    { icon: <BiShieldPlus style={details} />, toolTip: "Talentos" }
   ]
   return (
     <div className="tudos">

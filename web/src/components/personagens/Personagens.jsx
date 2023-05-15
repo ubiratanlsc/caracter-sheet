@@ -1,23 +1,25 @@
 import React from "react";
 import './personagens.css'
-import { Gi3DHammer, GiBookmarklet, GiWolfHowl } from 'react-icons/gi'
+import { Gi3DHammer, GiBookmarklet, GiThorHammer, GiWolfHowl } from 'react-icons/gi'
 import wr from '../../assets/img/guerreiro.png'
 import mg from '../../assets/img/guerreiro.jpg'
 import dr from '../../assets/img/druida.jpg'
 
+export const details = { color: "", height:"2.5em", width:"2.5em" }
 export const Personagens = () => {
 
+  
   const card = [
-    { nome: "Mathaius", icon: <Gi3DHammer size={40} />, img:wr, classe:"Guerreiro" },
-    { nome: "Bira", icon: <GiBookmarklet size={40} />, img:mg, classe:"Mago"  },
-    { nome: "JohnKoult", icon: <GiWolfHowl size={40} />, img:dr, classe:"Druida" },
-    { nome: "JohnEnder", icon: <Gi3DHammer size={40} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer size={40} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer size={40} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer size={40} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer size={40} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer size={40} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer size={40} />, img:wr, classe:"Guerreiro" },
+    { nome: "Mathaius", icon: <GiThorHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "Bira", icon: <GiBookmarklet style={details} />, img:mg, classe:"Mago"  },
+    { nome: "JohnKoult", icon: <GiWolfHowl style={details} />, img:dr, classe:"Druida" },
+    { nome: "JohnEnder", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
 
   ]
   return (
