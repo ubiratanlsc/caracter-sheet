@@ -57,7 +57,6 @@ export const Magias = () => {
         { id: 8, title: "nivel", sigla: "n8" },
         { id: 9, title: "nivel", sigla: "n9" },
     ]
-
     return (
         <div className='tabsContainer' >
 

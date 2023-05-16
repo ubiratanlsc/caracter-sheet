@@ -12,14 +12,14 @@ export const Personagens = () => {
   const card = [
     { nome: "Mathaius", icon: <GiThorHammer style={details} />, img:wr, classe:"Guerreiro" },
     { nome: "Bira", icon: <GiBookmarklet style={details} />, img:mg, classe:"Mago"  },
-    { nome: "JohnKoult", icon: <GiWolfHowl style={details} />, img:dr, classe:"Druida" },
+    { nome: "JohnKoult1", icon: <GiWolfHowl style={details} />, img:dr, classe:"Druida" },
     { nome: "JohnEnder", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
-    { nome: "JohnKoult", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult2", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult3", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult4", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult5", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult6", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
+    { nome: "JohnKoult7", icon: <Gi3DHammer style={details} />, img:wr, classe:"Guerreiro" },
 
   ]
   return (
@@ -27,7 +27,7 @@ export const Personagens = () => {
       <h1>Personagens</h1>
       <div className="tela">
         {card.map((info) =>
-          <div className="caracters glass">
+          <div className="caracters glass" key={info.nome}>
             <h2>{info.nome}</h2>
             <img src={info.img} alt="wr" className="imagem"/>
             <div className="infor">

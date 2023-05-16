@@ -1,11 +1,3 @@
-@font-face {
-  font-family: SansaPro;
-  src: url('../font/SansaPro-Normal.otf');
-}
-body{
-  font-family: 'SansaPro';
-}
-
 .tabsContainer{
 }
 .tabsContainer > h1{
