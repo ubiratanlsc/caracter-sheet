@@ -1,19 +1,17 @@
-@font-face {
-  font-family: SansaPro;
-  src: url('../assets/font/SansaPro-Normal.otf');
-}
 body{
-  font-family: 'SansaPro';
   color: white;
   font-size:0.85vw;
 }
 .tudos{
   display:grid;
-  grid-template-columns: 2fr 8fr 2fr;
-  column-gap: 2em;
+  grid-template-columns: 1.5fr 9fr 1.5fr;
+  column-gap: 1em;
 }
 .conteudo{
   /* background-color: brown; */
+  display:flex;
+  justify-content: space-between;
+  align-items: start;
 }
 .sidebar{
   display: flex;
