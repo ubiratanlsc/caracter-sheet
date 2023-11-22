@@ -3,7 +3,7 @@
   src: url('../font/SansaPro-Normal.otf');
 }
 body{
-  font-family: 'SansaPro';
+  font-family: url(../font/SansaPro-Normal.otf);
   background: url(../img/montain.jpg);
   background-size: cover;
   color: white;
@@ -40,6 +40,13 @@ form input {
   border:none;
   color: #fff;
   text-align: center;
+}
+select {
+  background-color: #282828;
+  border:none;
+  color: #fff;
+  text-align: center;
+  font-family: 'SansaPro';
 }
 textarea:focus, input:focus, select:focus {
   box-shadow: 0 0 0 0;
@@ -80,7 +87,8 @@ form legend {
 ::placeholder {
   color:white;
   font-family:'SansaPro';
-  min-width: 120%;
+  /* min-width: 120%; */
+  color:#a0a0a0;
 }
 .spaceBT{
 justify-content: space-between;

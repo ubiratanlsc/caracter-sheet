@@ -1,18 +1,13 @@
-import { useState } from 'react'
-import ToolTip from './sidebar/Sidebar';
 import Sidebar from './sidebar/Sidebar';
-import '../src/assets/css/style.css'
-import { Personagens } from './components/personagens/Personagens';
-import { Magias } from './components/magias/Magias';
+import Grimorio from './components/grimorio/Grimorio';
+import './index.css'
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <>
+    <div className="bg-hero bg-cover">
       <Sidebar>
-        <Magias />
+        <Grimorio></Grimorio>
       </Sidebar>
-    </>
+    </div>
   )
 }
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './sidebar.css'
 import { BiHomeAlt, BiBookBookmark, BiShieldPlus } from 'react-icons/bi'
 import './ToolTip.css'
 
@@ -11,8 +10,8 @@ function Sidebar(props) {
     { icon: <BiShieldPlus size={40} />, toolTip: "Talentos" }
   ]
   return (
-    <div className="tudos">
-      <div className="sidebar siders">
+    <div className="grid grid-cols-gridBadeba gap-3">
+      <div className="flex flex-grow h-screen flex-col justify-center items-center  ">
         <ul className='toolItems'>
           {
             info.map((inf, index) => {
@@ -39,9 +38,10 @@ function Sidebar(props) {
           }
         </ul>
       </div>
-      <div className="conteudo">
+      <div className="">
         {props.children}
       </div>
+      <div className=""></div>
     </div>
 
   );
