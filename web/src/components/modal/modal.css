@@ -1,0 +1,105 @@
+.btn {
+  font-size:16px; font-family:inherit; font-weight:500;
+  padding: 12px 20px; border: none; border-radius: 8px;
+  cursor: pointer;
+}
+.btn-primary{ background: rgba(255,255,255,0.3);
+color: #fff;}
+.btn-cancel{ background-color: #e2e2e2; }
+
+.modal{
+display: flex; justify-content: center; align-items: center;
+position: fixed; top:0; left: 0; right: 0; bottom: 0;
+background-color:rgba(0,0,0,0); z-index: -1; overflow: auto; transition: 0.25s;
+}
+
+.modal.show {
+  background-color:rgba(0, 0, 0, 0.6);
+  z-index: 2; }
+  
+.modal .modal-content {
+  /* background-color: #2e2f36; */
+  background: rgba(255,255,255,0.3);
+  border: 3px solid rgb(180, 180, 180);
+  width: 80em;
+  padding: 24px;
+  margin : 0 8px;
+  border-radius: 16px;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.25s; 
+  }
+  .modal.show .modal-content {
+  opacity: 1;
+   }
+   .modal .modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    
+    .modal .modal-header, .modal-close {
+    color : #ffffff ;
+    font-weight: 400;
+    padding: 4px;
+    margin: 0;
+    }
+    .modal-close{
+    float: right;
+    cursor: pointer;
+    }
+    .form-control {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      align-content: space-around;
+    }
+    .item {
+      margin: 4px;
+      padding: 4px 30px 4px 0px;
+      /* background: tomato; */
+      /* background:#2e2f36; */
+      text-align: center;
+      font-size: 1.2em;
+      border-radius: 6px;
+      color:black;
+      text-transform: capitalize;
+    }
+    .item span {
+      font-weight: bold;
+    }
+    .descricao{
+      color:black;
+      font-weight: bold;
+      font-size:1.5em;
+      text-transform: capitalize;
+    }
+    
+    .modal .modal-header .title-magia {
+    color : black ;
+    font-size :30px;
+    font-weight:500;
+    margin: 0;
+    }
+    .modal .modal-body {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    gap: 16px; 
+    }
+    .modal .modal-body { display: flex; flex-direction: column; }
+    .modal .modal-body input {
+      font-size: 14px;
+      font-family: inherit;
+      padding: 12px 20px;
+      outline: none;
+      border: none;
+      border-radius: 8px;
+      }
+      .modal .modal-body label {
+      color : #ffffff;
+      margin-bottom: 4px;
+      }
+      .modal .modal-footer {
+      display: flex;
+      justify-content: flex-start;
+      gap: 8px; }
