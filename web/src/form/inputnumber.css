@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Para navegadores WebKit (Chrome, Safari) */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -13,19 +12,3 @@ input[type="number"]::-moz-number-spin-box {
 
 /* Estilo personalizado para os controles do input number */
 
-=======
-/* Para navegadores WebKit (Chrome, Safari) */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Para Firefox */
-input[type="number"]::-moz-number-spin-box {
-  -moz-appearance: textfield;
-}
-
-/* Estilo personalizado para os controles do input number */
-
->>>>>>> 2e69c718dbeaf7059ad3cb37d1eaf0562c1389f5
