@@ -1,23 +1,14 @@
-body{
-  color: white;
-  font-size:0.85vw;
-}
 .tudos{
   display:grid;
-  grid-template-columns: 1.5fr 9fr 1.5fr;
-  column-gap: 1em;
+  grid-template-columns: 1fr 9fr 1fr;
 }
 .conteudo{
-  /* background-color: brown; */
-  display:flex;
-  justify-content: space-between;
-  align-items: start;
 }
 .sidebar{
+  margin-left: 1em;
   display: flex;
   flex-grow: 1;
   height:100vh;
-  /* background-color: blueviolet; */
 }
 .siders{
   display:flex;
