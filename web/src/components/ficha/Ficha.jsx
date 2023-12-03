@@ -2,22 +2,35 @@ import React, { useEffect, useState } from "react";
 import InputFormText from "../../form/InputFormText";
 
 function Ficha() {
-  const [habilidades, setHabilidades] = useState({for: 10, des: 10, con: 10, int: 10, sab: 10, car: 10});
-  const [modificador, setModificador] = useState({bonus: 0, penalidade: 0})
+  const [habilidades, setHabilidades] = useState({
+    for: 10, forPen: 0, forBon: 0,
+    des: 10, desPen: 0, desBon: 0,
+    con: 10, conPen: 0, conBon: 0,
+    int: 10, intPen: 0, intBon: 0,
+    sab: 10, sabPen: 0, sabBon: 0,
+    car: 10, carPen: 0, carBon: 0.
+    });
   const array = ["for", "des", "con", "int", "sab", "car"]
-  function alteraModificador(valor, bonus, penalidade) {
-    let resultado = parseInt(valor) - 10;
+  const arrayDano = ['10', 20, 30, 40,]
+  const arrayCura = [50, 60, 70, 80,]
+  function alteraModificador(valor, id) {
+    let penalidade = parseInt(habilidades[`${id}Pen`]) ? parseInt(habilidades[`${id}Pen`]) : 0;
+    let bonificado = parseInt(habilidades[`${id}Bon`]) ? parseInt(habilidades[`${id}Bon`]) : 0;
+    let value = parseInt(valor)
+    let soma = value + bonificado;
+    let sub = soma - penalidade;
+    let resultado = sub - 10;
     resultado /= 2;
     resultado = Math.floor(resultado);
     return resultado;
   }
+  const atualizarResultado = () => {
+    const novoResultado = campoA + campoB - campoC;
+    setResultado(novoResultado);
+  };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setHabilidades(habilidades => ({ ...habilidades, [name]: value }))
-  };
-  const handleModificadorChange = (event) => {
-    const { name, value } = event.target;
-    setModificador(modificador => ({ ...modificador, [name]: value }))
   };
 
   return (
@@ -45,12 +58,32 @@ function Ficha() {
           <div className=" text-center text-white text-xs w-10 rounded">DANO</div>
         </div>
         {array.map((item) =>
-          <div className="flex gap-1 items-end">
+          <div className="flex gap-1 items-end" key={item}>
             <InputFormText legenda={item.toUpperCase()} id={item} name={item} tamanho={"w-20"} handle={handleInputChange} value={habilidades[`${item}`]}/>
-            <InputFormText tamanho={"w-10"} value={alteraModificador(habilidades[`${item}`])} color={"bg-tormenta"}/>
-            <InputFormText tamanho={"w-10"} handle={handleInputChange} color={"bg-tormenta"} />
-            <InputFormText tamanho={"w-10"} handle={handleInputChange} color={"bg-tormenta"} />
+            <InputFormText tamanho={"w-10"} value={alteraModificador(habilidades[`${item}`], item)} color={"bg-tormenta"} readonly/>
+            <InputFormText tamanho={"w-10"} id={`${item}Bon`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={habilidades[`${item}Bon`]}/>
+            <InputFormText tamanho={"w-10"} id={`${item}Pen`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={habilidades[`${item}Pen`]}/>
           </div>)}
+      </section>
+      <section className="life glass flex col-span-4">
+        <div>
+        <InputFormText legenda="Pontos de Vida" tamanho={"w-30"} />
+        <div className="flex">
+        <InputFormText legenda="Historico de Dano" tamanho={"w-50"} value={arrayDano}/>
+        </div>
+        <div className="flex">
+        <InputFormText legenda="Historico de Cura" tamanho={"w-50"} value={arrayCura}/>
+        </div>
+        <InputFormText legenda="Historico de Cura" tamanho={"w-50"} value={arrayCura}/>
+        </div>
+        
+        <div>
+        <InputFormText legenda="Dano" tamanho={"w-20"} />
+        </div>
+        <div>
+        <InputFormText legenda="Cura" tamanho={"w-20"} />
+        </div>
+
       </section>
     </div>
   )
