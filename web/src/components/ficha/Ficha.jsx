@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InputFormText from "../../form/InputFormText";
+import InputFormButton from "../../form/InputFormButton";
 
 function Ficha() {
   const [habilidades, setHabilidades] = useState({
@@ -9,7 +10,7 @@ function Ficha() {
     int: 10, intPen: 0, intBon: 0,
     sab: 10, sabPen: 0, sabBon: 0,
     car: 10, carPen: 0, carBon: 0.
-    });
+  });
   const array = ["for", "des", "con", "int", "sab", "car"]
   const arrayDano = ['10', 20, 30, 40,]
   const arrayCura = [50, 60, 70, 80,]
@@ -59,30 +60,23 @@ function Ficha() {
         </div>
         {array.map((item) =>
           <div className="flex gap-1 items-end" key={item}>
-            <InputFormText legenda={item.toUpperCase()} id={item} name={item} tamanho={"w-20"} handle={handleInputChange} value={habilidades[`${item}`]}/>
-            <InputFormText tamanho={"w-10"} value={alteraModificador(habilidades[`${item}`], item)} color={"bg-tormenta"} readonly/>
-            <InputFormText tamanho={"w-10"} id={`${item}Bon`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={habilidades[`${item}Bon`]}/>
-            <InputFormText tamanho={"w-10"} id={`${item}Pen`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={habilidades[`${item}Pen`]}/>
+            <InputFormText legenda={item.toUpperCase()} id={item} name={item} tamanho={"w-20"} handle={handleInputChange} value={habilidades[`${item}`]} />
+            <InputFormText tamanho={"w-10"} value={alteraModificador(habilidades[`${item}`], item)} color={"bg-tormenta"} readonly />
+            <InputFormText tamanho={"w-10"} id={`${item}Bon`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={habilidades[`${item}Bon`]} />
+            <InputFormText tamanho={"w-10"} id={`${item}Pen`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={habilidades[`${item}Pen`]} />
           </div>)}
       </section>
-      <section className="life glass flex col-span-4">
-        <div>
+      <section className="life glass flex col-span-4 gap-3 flex-wrap items-start">
         <InputFormText legenda="Pontos de Vida" tamanho={"w-30"} />
-        <div className="flex">
-        <InputFormText legenda="Historico de Dano" tamanho={"w-50"} value={arrayDano}/>
+        <InputFormText legenda="Historico de Dano" tamanho={"w-50"} value={arrayDano} />
+        <div className="flex glass gap-3 items-top">
+          <InputFormText legenda="Cura" tamanho={"w-20"} />
+          <InputFormButton icon={"up"} />
+          <InputFormText legenda="Dano" tamanho={"w-20"} />
+          <InputFormButton icon={"down"} />
         </div>
-        <div className="flex">
-        <InputFormText legenda="Historico de Cura" tamanho={"w-50"} value={arrayCura}/>
-        </div>
-        <InputFormText legenda="Historico de Cura" tamanho={"w-50"} value={arrayCura}/>
-        </div>
-        
-        <div>
-        <InputFormText legenda="Dano" tamanho={"w-20"} />
-        </div>
-        <div>
-        <InputFormText legenda="Cura" tamanho={"w-20"} />
-        </div>
+
+
 
       </section>
     </div>

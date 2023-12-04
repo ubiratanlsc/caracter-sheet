@@ -8,7 +8,7 @@ export default function InputFormText(props) {
   return (
     <>
       <fieldset className=''  >
-        <legend className='text-slate-100 relative top-3 text-sm ml-3'>{props.legenda}</legend>
+        <legend className='text-slate-100 relative top-2 text-sm ml-3'>{props.legenda}</legend>
         {/* <legend style={{ marginTop: '0.4em', marginLeft: '1.3em', position: 'absolute', visibility: `${ocultar}` }}>CD</legend> */}
         <input
           placeholder={props.placeholder}
