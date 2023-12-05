@@ -14,6 +14,7 @@ function Ficha() {
   const array = ["for", "des", "con", "int", "sab", "car"]
   const arrayDano = ['10', 20, 30, 40,]
   const arrayCura = [50, 60, 70, 80,]
+  const cor = "text-green-700"
   function alteraModificador(valor, id) {
     let penalidade = parseInt(habilidades[`${id}Pen`]) ? parseInt(habilidades[`${id}Pen`]) : 0;
     let bonificado = parseInt(habilidades[`${id}Bon`]) ? parseInt(habilidades[`${id}Bon`]) : 0;
@@ -51,7 +52,7 @@ function Ficha() {
         <InputFormText legenda="Deslocamento" tamanho={"w-72"} />
         <InputFormText legenda="Nivel" tamanho={"w-72"} />
       </section>
-      <section className="glass col-span-2  justify-center flex flex-wrap p-2">
+      <section className="glass col-span-2 justify-center flex flex-wrap p-2">
         <div className="flex gap-1 items-end absolute top-1">
           <div className=" text-center text-white text-xs w-20 rounded">Habilidade</div>
           <div className=" text-center text-white text-xs w-10 rounded">MOD</div>
@@ -66,17 +67,25 @@ function Ficha() {
             <InputFormText tamanho={"w-10"} id={`${item}Pen`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={habilidades[`${item}Pen`]} />
           </div>)}
       </section>
-      <section className="life glass flex col-span-4 gap-3 flex-wrap items-start">
-        <InputFormText legenda="Pontos de Vida" tamanho={"w-30"} />
-        <InputFormText legenda="Historico de Dano" tamanho={"w-50"} value={arrayDano} />
-        <div className="flex glass gap-3 items-top">
-          <InputFormText legenda="Cura" tamanho={"w-20"} />
+      <section className="col-span-7 flex gap-3 flex-col">
+        <section className="glass flex gap-3 flex-wrap justify-center items-end pb-5">
+          <InputFormText legenda="Pontos de Vida" tamanho={"w-48"} />
+          <InputFormText legenda="Historico de Dano" tamanho={"w-48"} value={arrayDano} />
+          <InputFormText legenda="Cura" tamanho={"w-36"} />
           <InputFormButton icon={"up"} />
-          <InputFormText legenda="Dano" tamanho={"w-20"} />
+          <InputFormText legenda="Dano" tamanho={"w-36"} />
           <InputFormButton icon={"down"} />
-        </div>
-
-
+        </section>
+        <section className="glass flex gap-3 flex-wrap justify-center items-end pb-5">
+          <InputFormText legenda="Pontos de Vida" tamanho={"w-48"} />
+          <InputFormText legenda="Historico de Dano" tamanho={"w-48"} value={arrayDano} />
+          <InputFormText legenda="Cura" tamanho={"w-36"} />
+          <InputFormButton icon={"up"} />
+          <InputFormText legenda="Dano" tamanho={"w-36"} />
+          <InputFormButton icon={"down"} />
+        </section>
+      </section>
+      <section className="glass flex col-span-3 gap-3 flex-wrap h-20 justify-center items-end pb-9">
 
       </section>
     </div>
