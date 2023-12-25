@@ -9,4 +9,20 @@
   html {
     font-family: "SansaPro";
   }
+  .scroll-bar::-webkit-scrollbar {
+    /* width: 16px; */
+    @apply h-2
+  }
+  
+  .scroll-bar::-webkit-scrollbar-thumb {
+    background-color: #4f4f4f;
+    /* border-radius: 6px; */
+    @apply rounded h-32 w-1 bg-tormenta
+  }
+  /* fundo da barra */
+  .scroll-bar::-webkit-scrollbar-track {
+    /* background-color: #eaeaea; */
+    @apply h-32 bg-black rounded-xl w-52
+  }
+  
 }

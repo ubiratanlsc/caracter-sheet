@@ -11,10 +11,12 @@ function Ficha() {
     sab: 10, sabPen: 0, sabBon: 0,
     car: 10, carPen: 0, carBon: 0.
   });
+  const [ historico, setHistorico ] = useState([])
   const array = ["for", "des", "con", "int", "sab", "car"]
   const arrayDano = ['10', 20, 30, 40,]
   const arrayCura = [50, 60, 70, 80,]
-  const cor = "text-green-700"
+  const arrayHistorico = [{dano:10, color:"vermelho"},{dano:10, color:"vermelho"},{cura:10, color:"verde"},{dano:10, color:"vermelho"},{dano:10, color:"vermelho"},]
+  // const cor = "text-green-700"
   function alteraModificador(valor, id) {
     let penalidade = parseInt(habilidades[`${id}Pen`]) ? parseInt(habilidades[`${id}Pen`]) : 0;
     let bonificado = parseInt(habilidades[`${id}Bon`]) ? parseInt(habilidades[`${id}Bon`]) : 0;
@@ -33,6 +35,24 @@ function Ficha() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setHabilidades(habilidades => ({ ...habilidades, [name]: value }))
+  };
+  const [valorInput, setValorInput] = useState();
+  const handleHistoricoChange = (event) => {
+    // console.log(event.target.attributes.cor);
+    const { name, value } = event.target;
+    const color = event.target.attributes.cor.value
+    setValorInput(valorInput => ({ ...valorInput, name:name, 'value':value, 'color':color }))
+  };
+ 
+  const handleClick = () => {
+    setHistorico((historico) => [...historico, valorInput]);
+    const inputElement = document.querySelector(`input[name="${valorInput.name}"]`)
+    const scroll = document.querySelector(".scroll-bar")
+    // scroll.scrollLeft = scroll.scrollTo(-99999999);
+    scroll.scrollTo(scroll.scrollWidth, 0);
+    // scroll.scrollLeft = scroll.scrollIntoView({ inline: "center" });
+    console.log(scroll.scrollLeft);
+    inputElement.value = ''
   };
 
   return (
@@ -70,19 +90,32 @@ function Ficha() {
       <section className="col-span-7 flex gap-3 flex-col">
         <section className="glass flex gap-3 flex-wrap justify-center items-end pb-5">
           <InputFormText legenda="Pontos de Vida" tamanho={"w-48"} />
-          <InputFormText legenda="Historico de Dano" tamanho={"w-48"} value={arrayDano} />
-          <InputFormText legenda="Cura" tamanho={"w-36"} />
-          <InputFormButton icon={"up"} />
-          <InputFormText legenda="Dano" tamanho={"w-36"} />
-          <InputFormButton icon={"down"} />
+          {/* <InputFormText legenda="Historico de Dano" tamanho={"w-48"} value={arrayDano} /> */}
+          <fieldset>
+            <legend className="text-slate-100 relative top-2 text-sm ml-3">historico de Dano</legend>
+            <div className="bg-black text-white w-48 h-9 rounded flex items-center justify-around gap-1 overflow-auto scroll-bar">
+           {historico.map((item, index) =>
+           <div key={index}>
+           <div className={`text-${item.color} font-semibold`}>{item.value}</div>
+         </div>
+           )}
+            </div>
+          </fieldset>
+          <InputFormText legenda="Cura" name="cura" cor="verde" tamanho={"w-36"} handle={handleHistoricoChange}/>
+          <InputFormButton icon={"up"} click={handleClick}/>
+          <InputFormText legenda="Dano" name="dano" cor="vermelho" tamanho={"w-36"} handle={handleHistoricoChange}/>
+          <InputFormButton icon={"down"} click={handleClick} />
         </section>
         <section className="glass flex gap-3 flex-wrap justify-center items-end pb-5">
-          <InputFormText legenda="Pontos de Vida" tamanho={"w-48"} />
-          <InputFormText legenda="Historico de Dano" tamanho={"w-48"} value={arrayDano} />
-          <InputFormText legenda="Cura" tamanho={"w-36"} />
+          {/* <InputFormText legenda="Pontos de Vida" tamanho={"w-24"} /> */}
+          <div className="bg-black text-white w-48 h-9 rounded flex items-center justify-around gap-1 overflow-auto scroll-bar">
+            <div className="text-red-800 scroll-ml-6 snap-start">{arrayDano[0]}</div>
+          </div>
+          {/* <InputFormText legenda="Historico de Dano" tamanho={"w-48"} value={arrayDano} /> */}
+          {/* <InputFormText legenda="Cura" tamanho={"w-36"} />
           <InputFormButton icon={"up"} />
           <InputFormText legenda="Dano" tamanho={"w-36"} />
-          <InputFormButton icon={"down"} />
+          <InputFormButton icon={"down"} /> */}
         </section>
       </section>
       <section className="glass flex col-span-3 gap-3 flex-wrap h-20 justify-center items-end pb-9">

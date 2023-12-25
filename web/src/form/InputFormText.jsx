@@ -12,6 +12,7 @@ export default function InputFormText(props) {
         {/* <legend style={{ marginTop: '0.4em', marginLeft: '1.3em', position: 'absolute', visibility: `${ocultar}` }}>CD</legend> */}
         <input
           placeholder={props.placeholder}
+          cor={props.cor}
           className={`${tamanho} text-center text-white ${color} focus:border-none focus:outline target:border-none rounded h-9`}
           type={props.type}
           name={props.name}

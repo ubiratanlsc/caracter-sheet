@@ -9,7 +9,13 @@ function InputFormButton(props) {
  
  return (
   <>
-   <button type="button" className={`bg-tormenta rounded h-9 ${props.tamanho}`}>{icons[props.icon]}</button>
+   <button 
+   type="button" 
+   className={`bg-tormenta rounded h-9 ${props.tamanho}`}
+   onClick={props.click}
+   >
+    {icons[props.icon]}
+   </button>
   </>
  )
 }

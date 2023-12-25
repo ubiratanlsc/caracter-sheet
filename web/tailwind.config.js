@@ -17,6 +17,8 @@ export default {
       colors: {
         'regal-blue': '#243c5a',
         'tormenta': '#800000',
+        'vermelho': '#ff0000',
+        'verde':'#00ff00',
         
       },
       gridTemplateColumns:{
