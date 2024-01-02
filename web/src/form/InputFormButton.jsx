@@ -5,8 +5,8 @@ function InputFormButton(props) {
  const icons = {
   up: <FiChevronsUp className="w-22" color="white" size={40} />,
   down: <FiChevronsDown className="w-22" color="white" size={40} />,
-  apagar: <FiSkipBack className="w-22" color="white" size={36} />,
-  lixo: <FiTrash2 className="w-22" color="white" size={36} />
+  apagar: <FiSkipBack className="w-22" color="white" size={32} />,
+  lixo: <FiTrash2 className="w-22" color="white" size={32} />
  }
  
  return (

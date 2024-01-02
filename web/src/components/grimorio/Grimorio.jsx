@@ -56,7 +56,6 @@ function Grimorio() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormValues(formValues => ({ ...formValues, [name]: value }))
-    console.log(formValues);
   };
   const handleSubmit = (event) => {
     event.preventDefault();

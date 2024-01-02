@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import InputFormText from "../../form/InputFormText";
 import InputFormButton from "../../form/InputFormButton";
-
+import status from "../../services/status.js"
 function Ficha() {
+  // console.log(status[habilidadess]);
   const [habilidades, setHabilidades] = useState({
     for: 10, forPen: 0, forBon: 0,
     des: 10, desPen: 0, desBon: 0,
@@ -13,10 +14,6 @@ function Ficha() {
   });
   const [historico, setHistorico] = useState([])
   const array = ["for", "des", "con", "int", "sab", "car"]
-  const arrayDano = ['10', 20, 30, 40,]
-  const arrayCura = [50, 60, 70, 80,]
-  const arrayHistorico = [{ dano: 10, color: "vermelho" }, { dano: 10, color: "vermelho" }, { cura: 10, color: "verde" }, { dano: 10, color: "vermelho" }, { dano: 10, color: "vermelho" },]
-  // const cor = "text-green-700"
   function alteraModificador(valor, id) {
     let penalidade = parseInt(habilidades[`${id}Pen`]) ? parseInt(habilidades[`${id}Pen`]) : 0;
     let bonificado = parseInt(habilidades[`${id}Bon`]) ? parseInt(habilidades[`${id}Bon`]) : 0;
@@ -26,6 +23,8 @@ function Ficha() {
     let resultado = sub - 10;
     resultado /= 2;
     resultado = Math.floor(resultado);
+    console.log(setHabilidades(habilidades => ({ ...habilidades, [id]: resultado })));
+    // setHabilidades(habilidades => ({ ...habilidades, [id]: resultado }))
     return resultado;
   }
   const atualizarResultado = () => {
@@ -66,23 +65,22 @@ function Ficha() {
     const newArray = [];
     setHistorico(newArray);
   };
-  const ClasseArmadura = () =>{
     const base = 10;
     const nv = habilidades.nivel ? habilidades.nivel : 0
     let meioNv = nv / 2
     meioNv = Math.floor(meioNv);
     const modHab = habilidades.desBon
-    const armadura = habilidades.armadura ? habilidades.armadura : 0
-    const escudo = habilidades.escudo ? habilidades.escudo : 0
-    const outros = habilidades.outros ? habilidades.outros : 0
-    const tamanho = habilidades.tamanho ? habilidades.tamanho : 0
-    const penalidadeCA = habilidades.penalidadeCA ? habilidades.penalidadeCA : 0
+    const armadura = habilidades['armadura'] ? habilidades['armadura'] : 0
+    const escudo = habilidades['escudo'] ? habilidades['escudo'] : 0
+    const outros = habilidades['outros'] ? habilidades['outros'] : 0
+    const tamanho = habilidades['tamanho'] ? habilidades['tamanho'] : 0
+    const penalidadeCA = habilidades['penalidadeCA'] ? habilidades['penalidadeCA'] : 0
     const somaCA = base + meioNv + modHab + armadura + escudo + outros
     let subCA = somaCA - penalidadeCA
-    setHabilidades(habilidades => ({ ...habilidades, ['totalCA']: subCA }))
-  };
+    // setHabilidades(habilidades => ({ ...habilidades, ['totalCA']: subCA }))
+  
 // console.log(calculoArmadura());
-ClasseArmadura
+
   return (
     <div className="grid grid-cols-12 gap-3">
       <header className="">
@@ -139,11 +137,11 @@ ClasseArmadura
           <fieldset>
             <legend className="text-slate-100 relative top-2 text-sm ml-3">CA</legend>
             <div className="bg-black text-white w-28 h-9 rounded flex items-center justify-around gap-1">
-              {habilidades.totalCA}
+              {subCA}
             </div>
           </fieldset>
-          <InputFormText legenda='&#189; Nivel' tamanho="w-28"/>
-          <InputFormText legenda='Habilidade' tamanho="w-28"/>
+          <InputFormText legenda='&#189; Nivel' tamanho="w-28" value={meioNv}/>
+          <InputFormText legenda='Habilidade' tamanho="w-28" />
           <InputFormText legenda='Armadura' tamanho="w-28"/>
           <InputFormText legenda='Escudo' tamanho="w-28"/>
           <InputFormText legenda='Tamanho' tamanho="w-28"/>
