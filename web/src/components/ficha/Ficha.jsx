@@ -10,10 +10,27 @@ function Ficha() {
     con: 10, conPen: 0, conBon: 0,
     int: 10, intPen: 0, intBon: 0,
     sab: 10, sabPen: 0, sabBon: 0,
-    car: 10, carPen: 0, carBon: 0.
+    car: 10, carPen: 0, carBon: 0
   });
   const [historico, setHistorico] = useState([])
   const array = ["for", "des", "con", "int", "sab", "car"]
+  let nv = habilidades.nivel ? habilidades.nivel : 0
+  let meioNv = nv / 2
+  meioNv = Math.floor(meioNv)
+  function alteraArmadura() {
+    let base = 10;
+    let modHab = habilidades.desBon
+    let armadura = habilidades['armadura'] ? habilidades['armadura'] : 0
+    let escudo = habilidades['escudo'] ? habilidades['escudo'] : 0
+    let outros = habilidades['outros'] ? habilidades['outros'] : 0
+    let tamanho = habilidades['tamanho'] ? habilidades['tamanho'] : 0
+    let penalidadeCA = habilidades['penalidadeCA'] ? habilidades['penalidadeCA'] : 0
+    let somaCA = base + meioNv + modHab + armadura + escudo + outros
+    let subCA = somaCA - penalidadeCA
+    // console.log(subCA);
+    return subCA;
+  }
+  let sub = alteraArmadura()
   function alteraModificador(valor, id) {
     let penalidade = parseInt(habilidades[`${id}Pen`]) ? parseInt(habilidades[`${id}Pen`]) : 0;
     let bonificado = parseInt(habilidades[`${id}Bon`]) ? parseInt(habilidades[`${id}Bon`]) : 0;
@@ -21,23 +38,25 @@ function Ficha() {
     let soma = value + bonificado;
     let sub = soma - penalidade;
     let resultado = sub - 10;
+    let identificador = `${id}Mod`
     resultado /= 2;
     resultado = Math.floor(resultado);
-    console.log(setHabilidades(habilidades => ({ ...habilidades, [id]: resultado })));
-    // setHabilidades(habilidades => ({ ...habilidades, [id]: resultado }))
+    if (id == 'des') {
+      alteraArmadura()
+    }
     return resultado;
   }
+  // setHabilidades(habilidades => ({ ...habilidades, identificador: parseInt(resultado) }))
   const atualizarResultado = () => {
     const novoResultado = campoA + campoB - campoC;
     setResultado(novoResultado);
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setHabilidades(habilidades => ({ ...habilidades, [name]: value }))
+    setHabilidades(habilidades => ({ ...habilidades, [name]: parseInt(value) }))
   };
   const [valorInput, setValorInput] = useState();
   const handleHistoricoChange = (event) => {
-    // console.log(event.target.attributes.cor);
     const { name, value } = event.target;
     const color = event.target.attributes.cor.value
     setValorInput(valorInput => ({ ...valorInput, name: name, 'value': value, 'color': color }))
@@ -47,14 +66,8 @@ function Ficha() {
     setHistorico((historico) => [...historico, valorInput]);
     const inputElement = document.querySelector(`input[name="${valorInput.name}"]`)
     const scroll = document.querySelector(".scroll-bar")
-    // scroll.scrollLeft = scroll.scrollTo(-99999999);
     scroll.scrollTo(scroll.scrollWidth, 0);
     scroll.scrollIntoView({ block: 'center' });
-
-    // console.log(`scroll => ${scroll.scrollIntoView}`);
-    // console.log(scroll.scrollTo(scroll.scrollWidth, 0));
-    // scroll.scrollLeft = scroll.scrollIntoView({ inline: "center" });
-    // console.log(scroll.scrollLeft);
     inputElement.value = ''
   };
   const removeLastElement = () => {
@@ -65,22 +78,11 @@ function Ficha() {
     const newArray = [];
     setHistorico(newArray);
   };
-    const base = 10;
-    const nv = habilidades.nivel ? habilidades.nivel : 0
-    let meioNv = nv / 2
-    meioNv = Math.floor(meioNv);
-    const modHab = habilidades.desBon
-    const armadura = habilidades['armadura'] ? habilidades['armadura'] : 0
-    const escudo = habilidades['escudo'] ? habilidades['escudo'] : 0
-    const outros = habilidades['outros'] ? habilidades['outros'] : 0
-    const tamanho = habilidades['tamanho'] ? habilidades['tamanho'] : 0
-    const penalidadeCA = habilidades['penalidadeCA'] ? habilidades['penalidadeCA'] : 0
-    const somaCA = base + meioNv + modHab + armadura + escudo + outros
-    let subCA = somaCA - penalidadeCA
-    // setHabilidades(habilidades => ({ ...habilidades, ['totalCA']: subCA }))
-  
-// console.log(calculoArmadura());
 
+  // setHabilidades(habilidades => ({ ...habilidades, ['totalCA']: subCA }))
+
+  // console.log(calculoArmadura());
+  // console.log({ habilidades });
   return (
     <div className="grid grid-cols-12 gap-3">
       <header className="">
@@ -137,15 +139,15 @@ function Ficha() {
           <fieldset>
             <legend className="text-slate-100 relative top-2 text-sm ml-3">CA</legend>
             <div className="bg-black text-white w-28 h-9 rounded flex items-center justify-around gap-1">
-              {subCA}
+              {sub}
             </div>
           </fieldset>
-          <InputFormText legenda='&#189; Nivel' tamanho="w-28" value={meioNv}/>
-          <InputFormText legenda='Habilidade' tamanho="w-28" />
-          <InputFormText legenda='Armadura' tamanho="w-28"/>
-          <InputFormText legenda='Escudo' tamanho="w-28"/>
-          <InputFormText legenda='Tamanho' tamanho="w-28"/>
-          <InputFormText legenda='Outros' tamanho="w-28"/>
+          <InputFormText legenda='&#189; Nivel' tamanho="w-28" value={meioNv} />
+          <InputFormText legenda='Habilidade' tamanho="w-28" value={alteraModificador(habilidades[`des`], 'des')} />
+          <InputFormText legenda='Armadura' tamanho="w-28" />
+          <InputFormText legenda='Escudo' tamanho="w-28" />
+          <InputFormText legenda='Tamanho' tamanho="w-28" />
+          <InputFormText legenda='Outros' tamanho="w-28" />
         </section>
       </section>
       <section className="glass flex col-span-3 gap-3 flex-wrap h-20 justify-center items-end pb-9">
