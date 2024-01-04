@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import InputFormText from "../../form/InputFormText";
 import InputFormButton from "../../form/InputFormButton";
 import status from "../../services/status.js"
+import Database from "../../context/database.jsx";
 function Ficha() {
   // console.log(status[habilidadess]);
+  const { personagem, setPersonagem } = useContext(Database)
+  const habilidadess = { ...personagem.habilidades}
+  console.log(personagem);
+  // console.log(habilidadess);
   const [habilidades, setHabilidades] = useState({
     for: 10, forPen: 0, forBon: 0,
     des: 10, desPen: 0, desBon: 0,
@@ -47,13 +52,18 @@ function Ficha() {
     return resultado;
   }
   // setHabilidades(habilidades => ({ ...habilidades, identificador: parseInt(resultado) }))
-  const atualizarResultado = () => {
-    const novoResultado = campoA + campoB - campoC;
-    setResultado(novoResultado);
+  const atualizarResultado = (name, value) => {
+    const novoResultado = parseInt(habilidadess[name]) + parseInt(habilidadess[`${name}Bon`]) - parseInt(habilidadess[`${name}Pen`])
+    // setPersonagem({ ...personagem, ['habilidades']: {...personagem['habilidades'], ['forMod']:  parseInt(novoResultado)}});
+    setPersonagem(personagem => ({ ...personagem, ['habilidades']: {...personagem['habilidades'], ['forMod']:  parseInt(novoResultado)}}))
   };
+  // atualizarResultado()
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setHabilidades(habilidades => ({ ...habilidades, [name]: parseInt(value) }))
+    const { name, value, id } = event.target;
+    setPersonagem(personagem => ({ ...personagem, [id]: {...personagem[id], [name]:  parseInt(value)}}))
+    if(id == 'habilidades') { 
+      atualizarResultado(name, value)
+    }
   };
   const [valorInput, setValorInput] = useState();
   const handleHistoricoChange = (event) => {
@@ -61,7 +71,6 @@ function Ficha() {
     const color = event.target.attributes.cor.value
     setValorInput(valorInput => ({ ...valorInput, name: name, 'value': value, 'color': color }))
   };
-
   const handleClick = () => {
     setHistorico((historico) => [...historico, valorInput]);
     const inputElement = document.querySelector(`input[name="${valorInput.name}"]`)
@@ -109,10 +118,10 @@ function Ficha() {
         </div>
         {array.map((item) =>
           <div className="flex gap-1 items-end" key={item}>
-            <InputFormText legenda={item.toUpperCase()} id={item} name={item} tamanho={"w-20"} handle={handleInputChange} value={habilidades[`${item}`]} />
-            <InputFormText tamanho={"w-10"} value={alteraModificador(habilidades[`${item}`], item)} color={"bg-tormenta"} readonly />
-            <InputFormText tamanho={"w-10"} id={`${item}Bon`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={habilidades[`${item}Bon`]} />
-            <InputFormText tamanho={"w-10"} id={`${item}Pen`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={habilidades[`${item}Pen`]} />
+            <InputFormText legenda={item.toUpperCase()} id={'habilidades'} name={item} tamanho={"w-20"} handle={handleInputChange} value={personagem.habilidades[`${item}`]} />
+            <InputFormText tamanho={"w-10"} value={alteraModificador(personagem.habilidades[`${item}`], item)} color={"bg-tormenta"} readonly />
+            <InputFormText tamanho={"w-10"} id={`habilidades`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Bon`]} />
+            <InputFormText tamanho={"w-10"} id={`habilidades`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Pen`]} />
           </div>)}
       </section>
       <section className="col-span-7 flex gap-3 flex-col">
