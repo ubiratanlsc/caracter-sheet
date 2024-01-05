@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import InputFormText from "../../form/InputFormText";
 import InputFormButton from "../../form/InputFormButton";
-import status from "../../services/status.js"
 import Database from "../../context/database.jsx";
 function Ficha() {
   // console.log(status[habilidadess]);
   const { personagem, setPersonagem } = useContext(Database)
-  const habilidadess = { ...personagem.habilidades}
+  const habilidadess = { ...personagem.habilidades }
   console.log(personagem);
   // console.log(habilidadess);
   const [habilidades, setHabilidades] = useState({
-    for: 10, forPen: 0, forBon: 0,
+    forr: 10, forPen: 0, forBon: 0,
     des: 10, desPen: 0, desBon: 0,
     con: 10, conPen: 0, conBon: 0,
     int: 10, intPen: 0, intBon: 0,
@@ -36,32 +35,52 @@ function Ficha() {
     return subCA;
   }
   let sub = alteraArmadura()
-  function alteraModificador(valor, id) {
-    let penalidade = parseInt(habilidades[`${id}Pen`]) ? parseInt(habilidades[`${id}Pen`]) : 0;
-    let bonificado = parseInt(habilidades[`${id}Bon`]) ? parseInt(habilidades[`${id}Bon`]) : 0;
-    let value = parseInt(valor)
-    let soma = value + bonificado;
-    let sub = soma - penalidade;
-    let resultado = sub - 10;
-    let identificador = `${id}Mod`
+  function alteraModificador(valor) {
+    let resultado = valor - 10;
     resultado /= 2;
     resultado = Math.floor(resultado);
-    if (id == 'des') {
-      alteraArmadura()
-    }
     return resultado;
   }
+  const { habilidades: valorHab } = personagem;
+  const arrayModificador = []
+  let modificadores = {};
+  function modificador() {
+    let contador = 0;
+    let total = 0;
+    Object.keys(valorHab).forEach((chave) => {
+      let chaveAtual = `${chave}`.substring(0, 3)
+      total = total += parseInt(valorHab[chave]);
+      contador++
+      if (contador == 3) {
+        let modificador = alteraModificador(total)
+        const obj = new Object()
+        obj[`${chaveAtual}Mod`]= modificador;
+        arrayModificador.push(obj);
+        total = 0;
+        contador = 0;
+      }
+    });
+    modificadores = arrayModificador.reduce((resultado, objeto) => {
+      return { ...resultado, ...objeto };
+    }, {});
+    
+  } modificador()
   // setHabilidades(habilidades => ({ ...habilidades, identificador: parseInt(resultado) }))
   const atualizarResultado = (name, value) => {
-    const novoResultado = parseInt(habilidadess[name]) + parseInt(habilidadess[`${name}Bon`]) - parseInt(habilidadess[`${name}Pen`])
+    // const { habilidades: valorFor, forPen, forMod } = personagem;
+    // const soma = parseInt(value) + parseInt(habilidadess[`${newName}Bon`]) - parseInt(habilidadess[`${newName}Pen`])
+    // console.log(soma);
+    // const sub = soma - 10;
+    // const div = sub / 2;
+    // const result = Math.floor(div);
     // setPersonagem({ ...personagem, ['habilidades']: {...personagem['habilidades'], ['forMod']:  parseInt(novoResultado)}});
-    setPersonagem(personagem => ({ ...personagem, ['habilidades']: {...personagem['habilidades'], ['forMod']:  parseInt(novoResultado)}}))
+    // setPersonagem(personagem => ({ ...personagem, ['habilidades']: {...personagem['habilidades'], ['forMod']:  parseInt(novoResultado)}}))
   };
   // atualizarResultado()
   const handleInputChange = (event) => {
     const { name, value, id } = event.target;
-    setPersonagem(personagem => ({ ...personagem, [id]: {...personagem[id], [name]:  parseInt(value)}}))
-    if(id == 'habilidades') { 
+    setPersonagem(personagem => ({ ...personagem, [id]: { ...personagem[id], [name]: parseInt(value) } }))
+    if (id == 'habilidades') {
       atualizarResultado(name, value)
     }
   };
@@ -87,11 +106,6 @@ function Ficha() {
     const newArray = [];
     setHistorico(newArray);
   };
-
-  // setHabilidades(habilidades => ({ ...habilidades, ['totalCA']: subCA }))
-
-  // console.log(calculoArmadura());
-  // console.log({ habilidades });
   return (
     <div className="grid grid-cols-12 gap-3">
       <header className="">
@@ -119,7 +133,7 @@ function Ficha() {
         {array.map((item) =>
           <div className="flex gap-1 items-end" key={item}>
             <InputFormText legenda={item.toUpperCase()} id={'habilidades'} name={item} tamanho={"w-20"} handle={handleInputChange} value={personagem.habilidades[`${item}`]} />
-            <InputFormText tamanho={"w-10"} value={alteraModificador(personagem.habilidades[`${item}`], item)} color={"bg-tormenta"} readonly />
+            <InputFormText tamanho={"w-10"} value={modificadores[`${item}Mod`]} color={"bg-tormenta"} readonly />
             <InputFormText tamanho={"w-10"} id={`habilidades`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Bon`]} />
             <InputFormText tamanho={"w-10"} id={`habilidades`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Pen`]} />
           </div>)}
@@ -148,11 +162,10 @@ function Ficha() {
           <fieldset>
             <legend className="text-slate-100 relative top-2 text-sm ml-3">CA</legend>
             <div className="bg-black text-white w-28 h-9 rounded flex items-center justify-around gap-1">
-              {sub}
             </div>
           </fieldset>
-          <InputFormText legenda='&#189; Nivel' tamanho="w-28" value={meioNv} />
-          <InputFormText legenda='Habilidade' tamanho="w-28" value={alteraModificador(habilidades[`des`], 'des')} />
+          <InputFormText legenda='&#189; Nivel' tamanho="w-28" />
+          <InputFormText legenda='Habilidade' tamanho="w-28" />
           <InputFormText legenda='Armadura' tamanho="w-28" />
           <InputFormText legenda='Escudo' tamanho="w-28" />
           <InputFormText legenda='Tamanho' tamanho="w-28" />
