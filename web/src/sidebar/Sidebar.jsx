@@ -10,7 +10,7 @@ function Sidebar(props) {
     { icon: <BiShieldPlus size={40} />, toolTip: "Talentos" }
   ]
   return (
-    <div className="grid grid-cols-gridBadeba gap-3">
+    <div className="grid grid-cols-gridBadeba gap-3 h-screen">
       <div className="flex flex-grow h-screen flex-col justify-center items-center  ">
         <ul className='toolItems'>
           {

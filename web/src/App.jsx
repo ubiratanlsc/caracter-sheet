@@ -1,4 +1,4 @@
-import Database from './context/database';
+import Database from './context/Database';
 import Sidebar from './sidebar/Sidebar';
 import Grimorio from './components/grimorio/Grimorio';
 import './index.css'

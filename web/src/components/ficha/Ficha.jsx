@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import InputFormText from "../../form/InputFormText";
 import InputFormButton from "../../form/InputFormButton";
-import Database from "../../context/database.jsx";
+import Database from "../../context/Database.jsx";
+import Row from "../components/Row.jsx";
 function Ficha() {
   // console.log(status[habilidadess]);
   const { personagem, setPersonagem } = useContext(Database)
@@ -54,7 +55,7 @@ function Ficha() {
       if (contador == 3) {
         let modificador = alteraModificador(total)
         const obj = new Object()
-        obj[`${chaveAtual}Mod`]= modificador;
+        obj[`${chaveAtual}Mod`] = modificador;
         arrayModificador.push(obj);
         total = 0;
         contador = 0;
@@ -63,7 +64,7 @@ function Ficha() {
     modificadores = arrayModificador.reduce((resultado, objeto) => {
       return { ...resultado, ...objeto };
     }, {});
-    
+
   } modificador()
   // setHabilidades(habilidades => ({ ...habilidades, identificador: parseInt(resultado) }))
   const atualizarResultado = (name, value) => {
@@ -108,23 +109,23 @@ function Ficha() {
     setHistorico(newArray);
   };
   return (
-    <div className="grid grid-cols-12 gap-3">
+    <div className="grid gap-3">
       <header className="">
         <h1 className="text-white">Mathaius</h1>
       </header>
-      <section className="glass col-span-12 flex flex-wrap gap-3 pl-4 pb-4">
-        <InputFormText legenda="Raça" tamanho={"w-72"} />
-        <InputFormText legenda="Classe" tamanho={"w-72"} />
-        <InputFormText legenda="Nome" tamanho={"w-72"} />
-        <InputFormText legenda="Tendencia" tamanho={"w-72"} />
-        <InputFormText legenda="Tamanho" tamanho={"w-72"} />
-        <InputFormText legenda="Sexo" tamanho={"w-72"} />
-        <InputFormText legenda="Idade" tamanho={"w-72"} />
-        <InputFormText legenda="Divindade" tamanho={"w-72"} />
-        <InputFormText legenda="Deslocamento" tamanho={"w-72"} />
-        <InputFormText legenda="Nivel" tamanho={"w-72"} id="nivel" name="nivel" handle={handleInputChange} />
-      </section>
-      <section className="glass col-span-2 justify-center flex flex-wrap p-2">
+      <Row col={4} noSpace={"noSpace"}>
+        <InputFormText legenda="Raça" />
+        <InputFormText legenda="Classe" />
+        <InputFormText legenda="Nome" />
+        <InputFormText legenda="Tendencia" />
+        <InputFormText legenda="Tamanho" />
+        <InputFormText legenda="Sexo" />
+        <InputFormText legenda="Idade" />
+        <InputFormText legenda="Divindade" />
+        <InputFormText legenda="Deslocamento" />
+        <InputFormText legenda="Nivel" id="nivel" name="nivel" handle={handleInputChange} />
+      </Row>
+      {/* <section className="glass col-span-2 justify-center flex flex-wrap p-2">
         <div className="flex gap-1 items-end absolute top-1">
           <div className=" text-center text-white text-xs w-20 rounded">Habilidade</div>
           <div className=" text-center text-white text-xs w-10 rounded">MOD</div>
@@ -142,7 +143,6 @@ function Ficha() {
       <section className="col-span-7 flex gap-3 flex-col">
         <section className="glass flex gap-3 flex-wrap justify-center items-end pb-5">
           <InputFormText legenda="Pontos de Vida" tamanho={"w-48"} />
-          {/* <InputFormText legenda="Historico de Dano" tamanho={"w-48"} value={arrayDano} /> */}
           <fieldset>
             <legend className="text-slate-100 relative top-2 text-sm ml-3">historico de Dano</legend>
             <div className="bg-black text-white w-48 h-9 rounded flex items-center justify-around gap-1 overflow-auto scroll-bar px-4">
@@ -175,7 +175,7 @@ function Ficha() {
       </section>
       <section className="glass flex col-span-3 gap-3 flex-wrap h-20 justify-center items-end pb-9">
 
-      </section>
+      </section> */}
     </div>
   )
 }
