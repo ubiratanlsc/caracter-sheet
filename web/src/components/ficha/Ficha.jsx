@@ -79,7 +79,8 @@ function Ficha() {
   // atualizarResultado()
   const handleInputChange = (event) => {
     const { name, value, id } = event.target;
-    setPersonagem(personagem => ({ ...personagem, [id]: { ...personagem[id], [name]: parseInt(value) } }))
+    let valor = value ? value : 0;
+    setPersonagem(personagem => ({ ...personagem, [id]: { ...personagem[id], [name]: parseInt(valor) } }))
     if (id == 'habilidades') {
       atualizarResultado(name, value)
     }
@@ -165,7 +166,7 @@ function Ficha() {
             </div>
           </fieldset>
           <InputFormText legenda='&#189; Nivel' tamanho="w-28" />
-          <InputFormText legenda='Habilidade' tamanho="w-28" />
+          <InputFormText legenda='Habilidade' tamanho="w-28" value={modificadores.desMod} />
           <InputFormText legenda='Armadura' tamanho="w-28" />
           <InputFormText legenda='Escudo' tamanho="w-28" />
           <InputFormText legenda='Tamanho' tamanho="w-28" />
