@@ -5,16 +5,15 @@ export default function InputFormText(props) {
   const ocultar = props.ocultar ? props.ocultar : ''
   const tamanho = props.tamanho ? props.tamanho : "w-full"
   const color = props.color ? props.color : "bg-black"
-  const tamanhominimo = props.tamanhominimo ? props.tamanhominimo : "min-w-1"
   return (
     <>
-      <fieldset className=''  >
+      <fieldset className='grow'>
         <legend className='text-slate-100 relative top-2  text-sm ml-3'>{props.legenda}</legend>
         {/* <legend style={{ marginTop: '0.4em', marginLeft: '1.3em', position: 'absolute', visibility: `${ocultar}` }}>CD</legend> */}
         <input
           placeholder={props.placeholder}
           cor={props.cor}
-          className={`${tamanho} ${tamanhominimo}  text-center text-white ${color} focus:border-none focus:outline target:border-none rounded h-9`}
+          className={`${tamanho} text-center text-white ${color} focus:border-none focus:outline target:border-none rounded h-9`}
           type={props.type}
           name={props.name}
           id={props.id}

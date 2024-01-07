@@ -23,6 +23,7 @@ export default {
       },
       gridTemplateColumns:{
         'gridBadeba': '1fr 9fr 1fr',
+        '24': 'repeat(24, minmax(0, 1fr))',
       }
     },
     plugins: [],
