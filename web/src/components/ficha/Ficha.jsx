@@ -113,19 +113,19 @@ function Ficha() {
       <header className="col-span-full">
         <h1 className="text-white">Mathaius</h1>
       </header>
-      <section className="glass col-span-full flex flex-wrap gap-y-3 gap-x-3 mb-3">
-          <InputFormText legenda="Raça" />
-          <InputFormText legenda="Classe" />
-          <InputFormText legenda="Nome" />
-          <InputFormText legenda="Tendencia" />
-          <InputFormText legenda="Tamanho" />
-          <InputFormText legenda="Sexo" />
-          <InputFormText legenda="Idade" />
-          <InputFormText legenda="Divindade" />
-          <InputFormText legenda="Deslocamento" />
-          <InputFormText legenda="Nivel" id="nivel" name="nivel" handle={handleInputChange}/>
+      <section className="glass col-span-full flex flex-wrap gap-y-3 gap-x-3">
+          <InputFormText grow legenda="Raça" />
+          <InputFormText grow legenda="Classe" />
+          <InputFormText grow legenda="Nome" />
+          <InputFormText grow legenda="Tendencia" />
+          <InputFormText grow legenda="Tamanho" />
+          <InputFormText grow legenda="Sexo" />
+          <InputFormText grow legenda="Idade" />
+          <InputFormText grow legenda="Divindade" />
+          <InputFormText grow legenda="Deslocamento" />
+          <InputFormText grow legenda="Nivel" id="nivel" name="nivel" handle={handleInputChange}/>
       </section>
-       <section className="glass col-span-2 justify-center flex flex-wrap p-2">
+       <section className="glass col-span-4 h-96">
         <div className="flex gap-1 items-end absolute top-1">
           <div className=" text-center text-white text-xs w-20 rounded">Habilidade</div>
           <div className=" text-center text-white text-xs w-10 rounded">MOD</div>
@@ -134,13 +134,13 @@ function Ficha() {
         </div>
         {array.map((item) =>
           <div className="flex gap-1 items-end" key={item}>
-            <InputFormText legenda={item.toUpperCase()} id={'habilidades'} name={item} tamanho={"w-20"} handle={handleInputChange} value={personagem.habilidades[`${item}`]} />
-            <InputFormText tamanho={"w-10"} value={modificadores[`${item}Mod`]} color={"bg-tormenta"} readonly />
-            <InputFormText tamanho={"w-10"} id={`habilidades`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Bon`]} />
-            <InputFormText tamanho={"w-10"} id={`habilidades`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Pen`]} />
+            <InputFormText tamanho={"w-full max-w-30"} legenda={item.toUpperCase()} id={'habilidades'} name={item} handle={handleInputChange} value={personagem.habilidades[`${item}`]} />
+            <InputFormText tamanho={"max-w-20"} value={modificadores[`${item}Mod`]} color={"bg-tormenta"} readonly />
+            <InputFormText tamanho={"max-w-10"} id={`habilidades`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Bon`]} />
+            <InputFormText tamanho={"max-w-10"} id={`habilidades`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Pen`]} />
           </div>)}
       </section>
-      <section className=" flex col-span-7 gap-3 flex-col">
+      <section className=" flex col-span-5 gap-3 flex-col">
         <section className="glass flex gap-3 flex-wrap justify-center items-end pb-5">
           <InputFormText legenda="Pontos de Vida" tamanho={"w-48"} />
           <fieldset>
