@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import './inputnumber.css'
+// import './inputnumber.css'
 export default function InputFormText(props) {
 
   let ocultar = props.ocultar ? props.ocultar : ''
@@ -11,22 +11,22 @@ export default function InputFormText(props) {
   }
   return (
     <>
-      <fieldset className={`${tamanho} ${grow} bg-blue-700`}>
-        <legend className='text-slate-100 relative top-2  text-sm ml-3'>{props.legenda}</legend>
-        {/* <legend style={{ marginTop: '0.4em', marginLeft: '1.3em', position: 'absolute', visibility: `${ocultar}` }}>CD</legend> */}
-        <input
-          placeholder={props.placeholder}
-          cor={props.cor}
-          className={`w-full text-center text-white ${color} focus:border-none focus:outline target:border-none rounded h-9`}
-          type={props.type}
-          name={props.name}
-          id={props.id}
-          onChange={props.handle}
-          value={props.value}
-          defaultValue={props.defaultValue}
-          readOnly={props.readonly}
-        />
-      </fieldset>
+        <fieldset className={`${tamanho} ${grow}`}>
+          <legend className=' text-slate-100 relative top-2 2xl:text-sm md:text-xs ml-3'>{props.legenda}</legend>
+          {/* <legend style={{ marginTop: '0.4em', marginLeft: '1.3em', position: 'absolute', visibility: `${ocultar}` }}>CD</legend> */}
+          <input
+            placeholder={props.placeholder}   
+            cor={props.cor}
+            className={`w-full text-center text-white ${color} focus:border-none focus:outline target:border-none rounded 2xl:h-9 md:h-7 2xl:text-base md:text-xs`}
+            type={props.type}
+            name={props.name}
+            id={props.id}
+            onChange={props.handle}
+            value={props.value}
+            defaultValue={props.defaultValue}
+            readOnly={props.readonly}
+          />
+        </fieldset>
     </>
   )
 }
