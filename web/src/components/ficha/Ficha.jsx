@@ -86,7 +86,7 @@ function Ficha() {
       atualizarResultado(name, value)
     }
   };
-  const [valorInput, setValorInput] = useState();
+  let [valorInput, setValorInput] = useState();
   const handleHistoricoChange = (event) => {
     const { name, value } = event.target;
     const color = event.target.attributes.cor.value
@@ -94,6 +94,7 @@ function Ficha() {
   };
   const handleClick = () => {
     setHistorico((historico) => [...historico, valorInput]);
+    // valorInput = ''
     const inputElement = document.querySelector(`input[name="${valorInput.name}"]`)
     const scroll = document.querySelector(".scroll-bar")
     scroll.scrollTo(scroll.scrollWidth, 0);
@@ -114,18 +115,18 @@ function Ficha() {
         <h1 className="text-white">Mathaius</h1>
       </header>
       <section className="glass col-span-full flex flex-wrap gap-y-3 gap-x-3">
-          <InputFormText grow legenda="Raça" />
-          <InputFormText grow legenda="Classe" />
-          <InputFormText grow legenda="Nome" />
-          <InputFormText grow legenda="Tendencia" />
-          <InputFormText grow legenda="Tamanho" />
-          <InputFormText grow legenda="Sexo" />
-          <InputFormText grow legenda="Idade" />
-          <InputFormText grow legenda="Divindade" />
-          <InputFormText grow legenda="Deslocamento" />
-          <InputFormText grow legenda="Nivel" id="nivel" name="nivel" handle={handleInputChange}/>
+        <InputFormText grow legenda="Raça" />
+        <InputFormText grow legenda="Classe" />
+        <InputFormText grow legenda="Nome" />
+        <InputFormText grow legenda="Tendencia" />
+        <InputFormText grow legenda="Tamanho" />
+        <InputFormText grow legenda="Sexo" />
+        <InputFormText grow legenda="Idade" />
+        <InputFormText grow legenda="Divindade" />
+        <InputFormText grow legenda="Deslocamento" />
+        <InputFormText grow legenda="Nivel" id="nivel" name="nivel" handle={handleInputChange} />
       </section>
-       <section className="glass col-span-6">
+      <section className="glass col-span-4 pb-4 max-w-72">
         <div className="flex gap-2 items-end absolute top-1 w-full justify-center bg-black">
           <div className=" text-center text-white text-xs w-20 rounded">Habilidade</div>
           <div className=" text-center text-white text-xs w-10 rounded">MOD</div>
@@ -133,29 +134,33 @@ function Ficha() {
           <div className=" text-center text-white text-xs w-10 rounded">DANO</div>
         </div>
         {array.map((item) =>
-          <div className="flex items-end mt gap-x-2 justify-center" key={item}>
+          <div className="flex items-end mt gap-x-2 justify-center " key={item}>
             <InputFormText tamanho={"max-w-20"} legenda={item.toUpperCase()} id={'habilidades'} name={item} handle={handleInputChange} value={personagem.habilidades[`${item}`]} />
             <InputFormText tamanho={"max-w-10"} value={modificadores[`${item}Mod`]} color={"bg-tormenta"} readonly />
             <InputFormText tamanho={"max-w-10"} id={`habilidades`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Bon`]} />
             <InputFormText tamanho={"max-w-10"} id={`habilidades`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Pen`]} />
           </div>)}
       </section>
-      <section className=" flex col-span-12 gap-3 flex-col">
+      <section className=" flex col-span-16 gap-3 flex-col">
         <section className="glass flex gap-3 flex-wrap justify-center items-end pb-5">
-          <InputFormText legenda="Pontos de Vida" tamanho={"w-48"} />
+          <InputFormText legenda="Pontos de Vida" grow />
           <fieldset>
             <legend className="text-slate-100 relative top-2 text-sm ml-3">historico de Dano</legend>
-            <div className="bg-black text-white w-48 h-9 rounded flex items-center justify-around gap-1 overflow-auto scroll-bar px-4">
+            <div className="bg-black  w-56 h-9 rounded flex items-center justify-around gap-1 overflow-auto scroll-bar px-4">
               {historico.map((item, index) =>
                 <div key={index}>
-                  <div className={`text-${item.color} font-semibold`}>{item.value}</div>
+                  <div className={`${item.color} font-semibold`.toString() + console.log(item.color)}>{item.value}</div>
                 </div>)}
             </div>
           </fieldset>
-          <InputFormText legenda="Cura" name="cura" cor="verde" tamanho={"w-36"} handle={handleHistoricoChange} />
-          <InputFormButton icon={"up"} click={handleClick} />
-          <InputFormText legenda="Dano" name="dano" cor="vermelho" tamanho={"w-36"} handle={handleHistoricoChange} />
-          <InputFormButton icon={"down"} click={handleClick} />
+          <div className="flex items-end relative">
+            <InputFormText legenda="Cura" name="cura" cor="text-verde" grow handle={handleHistoricoChange} icon={"up"} />
+            <InputFormButton icon={"up"} click={handleClick} classe="absolute -right-1" />
+          </div>
+          <div className="flex items-end relative">
+            <InputFormText legenda="Dano" name="dano" cor="text-vermelho" grow handle={handleHistoricoChange} />
+            <InputFormButton icon={"down"} click={handleClick} classe="absolute -right-1"/>
+          </div>
           <InputFormButton icon={"apagar"} click={removeLastElement} />
           <InputFormButton icon={"lixo"} click={removeAllElement} />
         </section>
@@ -173,7 +178,7 @@ function Ficha() {
           <InputFormText legenda='Outros' tamanho="w-28" />
         </section>
       </section>
-      <section className="glass col-span-6 flex  gap-3 flex-wrap h-20 justify-center items-end pb-9">
+      <section className="glass col-span-4 flex  gap-3 flex-wrap h-20 justify-center items-end pb-9">
 
       </section>
     </div>
