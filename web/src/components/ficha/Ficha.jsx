@@ -94,7 +94,6 @@ function Ficha() {
   };
   const handleClick = () => {
     setHistorico((historico) => [...historico, valorInput]);
-    // valorInput = ''
     const inputElement = document.querySelector(`input[name="${valorInput.name}"]`)
     const scroll = document.querySelector(".scroll-bar")
     scroll.scrollTo(scroll.scrollWidth, 0);
@@ -114,52 +113,53 @@ function Ficha() {
       <header className="col-span-full">
         <h1 className="text-white">Mathaius</h1>
       </header>
-      <section className="glass col-span-full flex flex-wrap gap-y-3 gap-x-3">
+      <section className="glass col-span-full flex flex-wrap-reverse gap-y-3 gap-x-3 pb-3 px-4">
+
         <InputFormText grow legenda="Raça" />
         <InputFormText grow legenda="Classe" />
-        <InputFormText grow legenda="Nome" />
         <InputFormText grow legenda="Tendencia" />
         <InputFormText grow legenda="Tamanho" />
         <InputFormText grow legenda="Sexo" />
         <InputFormText grow legenda="Idade" />
-        <InputFormText grow legenda="Divindade" />
         <InputFormText grow legenda="Deslocamento" />
         <InputFormText grow legenda="Nivel" id="nivel" name="nivel" handle={handleInputChange} />
+        <InputFormText grow legenda="Nome" />
+        <InputFormText grow legenda="Divindade" />
       </section>
-      <section className="glass col-span-4 pb-4 max-w-72">
-        <div className="flex gap-2 items-end absolute top-1 w-full justify-center bg-black">
-          <div className=" text-center text-white text-xs w-20 rounded">Habilidade</div>
-          <div className=" text-center text-white text-xs w-10 rounded">MOD</div>
-          <div className=" text-center text-white text-xs w-10 rounded">BONUS</div>
-          <div className=" text-center text-white text-xs w-10 rounded">DANO</div>
+      <section className="glass col-span-4 pb-4 max-w-72 md:px-1 2xl:px-0">
+        <div className="flex gap-2 items-end w-full justify-center mt-2  rounded">
+          <div className=" text-center text-white 2xl:text-sm md:text-mp ">Habilidade</div>
+          <div className=" text-center text-white 2xl:text-sm md:text-mp ">MOD</div>
+          <div className=" text-center text-white 2xl:text-sm md:text-mp ">BONUS</div>
+          <div className=" text-center text-white 2xl:text-sm md:text-mp ">DANO</div>
         </div>
         {array.map((item) =>
-          <div className="flex items-end mt gap-x-2 justify-center " key={item}>
-            <InputFormText tamanho={"max-w-20"} legenda={item.toUpperCase()} id={'habilidades'} name={item} handle={handleInputChange} value={personagem.habilidades[`${item}`]} />
-            <InputFormText tamanho={"max-w-10"} value={modificadores[`${item}Mod`]} color={"bg-tormenta"} readonly />
-            <InputFormText tamanho={"max-w-10"} id={`habilidades`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Bon`]} />
-            <InputFormText tamanho={"max-w-10"} id={`habilidades`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Pen`]} />
+          <div className="flex items-end md:gap-x-1 2xl:gap-x-2 justify-center" key={item}>
+            <InputFormText tamanho={"2xl:w-20 md:w-14"} legenda={item.toUpperCase()} id={'habilidades'} name={item} handle={handleInputChange} value={personagem.habilidades[`${item}`]} />
+            <InputFormText tamanho={"2xl:w-10 md:w-9"} value={modificadores[`${item}Mod`]} color={"bg-tormenta"} readonly />
+            <InputFormText tamanho={"2xl:w-10 md:w-9"} id={`habilidades`} name={`${item}Bon`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Bon`]} />
+            <InputFormText tamanho={"2xl:w-10 md:w-9"} id={`habilidades`} name={`${item}Pen`} handle={handleInputChange} color={"bg-tormenta"} value={personagem.habilidades[`${item}Pen`]} />
           </div>)}
       </section>
       <section className=" flex col-span-16 gap-3 flex-col">
         <section className="glass flex gap-3 flex-wrap justify-center items-end pb-5">
-          <InputFormText legenda="Pontos de Vida" grow />
+          <InputFormText legenda="Pontos de Vida" tamanho={"w-30"} />
           <fieldset>
             <legend className="text-slate-100 relative top-2 text-sm ml-3">historico de Dano</legend>
-            <div className="bg-black  w-56 h-9 rounded flex items-center justify-around gap-1 overflow-auto scroll-bar px-4">
+            <div className="bg-black 2xl:h-9 md:h-7 w-48 rounded flex items-center justify-around gap-1 overflow-auto scroll-bar px-4">
               {historico.map((item, index) =>
                 <div key={index}>
-                  <div className={`${item.color} font-semibold`.toString() + console.log(item.color)}>{item.value}</div>
+                  <div className={`${item.color} font-bold`.toString()}>{item.value}</div>
                 </div>)}
             </div>
           </fieldset>
           <div className="flex items-end relative">
             <InputFormText legenda="Cura" name="cura" cor="text-verde" grow handle={handleHistoricoChange} icon={"up"} />
-            <InputFormButton icon={"up"} click={handleClick} classe="absolute -right-1" />
+            <InputFormButton icon={"up"} click={handleClick} classe="absolute -right-0 2xl:bottom-0 md:-bottom-1" />
           </div>
           <div className="flex items-end relative">
             <InputFormText legenda="Dano" name="dano" cor="text-vermelho" grow handle={handleHistoricoChange} />
-            <InputFormButton icon={"down"} click={handleClick} classe="absolute -right-1"/>
+            <InputFormButton icon={"down"} click={handleClick} classe="absolute -right-0 2xl:bottom-0 md:-bottom-1" />
           </div>
           <InputFormButton icon={"apagar"} click={removeLastElement} />
           <InputFormButton icon={"lixo"} click={removeAllElement} />
@@ -178,8 +178,11 @@ function Ficha() {
           <InputFormText legenda='Outros' tamanho="w-28" />
         </section>
       </section>
-      <section className="glass col-span-4 flex  gap-3 flex-wrap h-20 justify-center items-end pb-9">
-
+      <section className="glass col-span-4  gap-3 flex-wrap justify-center items-end pb-9">
+      <InputFormText legenda='Fortitude' tamanho="w-28" value={modificadores.conMod} />
+      <InputFormText legenda='Reflexo' tamanho="w-28" value={modificadores.conMod} />
+      <InputFormText legenda='Vontade' tamanho="w-28" value={modificadores.conMod} />
+        
       </section>
     </div>
   )

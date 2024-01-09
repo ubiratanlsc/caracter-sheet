@@ -38,6 +38,10 @@ export default {
         'span-22': 'span 22 / span 22',
         'span-23': 'span 23 / span 23',
         'span-24': 'span 24 / span 24',
+      },
+      fontSize: {
+        pp: '0.25rem',
+        mp: '0.65rem',
       }
       // maxWidth: {},
     },
