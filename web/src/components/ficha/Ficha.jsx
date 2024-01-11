@@ -149,16 +149,16 @@ function Ficha() {
             <div className="bg-black 2xl:h-9 md:h-7 w-48 rounded flex items-center justify-around gap-1 overflow-auto scroll-bar px-4">
               {historico.map((item, index) =>
                 <div key={index}>
-                  <div className={`${item.color} font-bold`.toString()}>{item.value}</div>
+                  <div data-current={`${item.color}`} className={`data-[current=verde]:text-verde data-[current=vermelho]:text-vermelho font-bold`}>{item.value}</div>
                 </div>)}
             </div>
           </fieldset>
           <div className="flex items-end relative">
-            <InputFormText legenda="Cura" name="cura" cor="text-verde" grow handle={handleHistoricoChange} icon={"up"} />
+            <InputFormText legenda="Cura" name="cura" cor="verde" grow handle={handleHistoricoChange} icon={"up"} />
             <InputFormButton icon={"up"} click={handleClick} classe="absolute -right-0 2xl:bottom-0 md:-bottom-1" />
           </div>
           <div className="flex items-end relative">
-            <InputFormText legenda="Dano" name="dano" cor="text-vermelho" grow handle={handleHistoricoChange} />
+            <InputFormText legenda="Dano" name="dano" cor="vermelho" grow handle={handleHistoricoChange} />
             <InputFormButton icon={"down"} click={handleClick} classe="absolute -right-0 2xl:bottom-0 md:-bottom-1" />
           </div>
           <InputFormButton icon={"apagar"} click={removeLastElement} />
@@ -171,19 +171,44 @@ function Ficha() {
             </div>
           </fieldset>
           <InputFormText legenda='&#189; Nivel' tamanho="w-28" />
-          <InputFormText legenda='Habilidade' tamanho="w-28" value={modificadores.desMod} />
+          <InputFormText legenda='Habilidade' tamanho="w-28" value={modificadores.des} readonly />
           <InputFormText legenda='Armadura' tamanho="w-28" />
           <InputFormText legenda='Escudo' tamanho="w-28" />
           <InputFormText legenda='Tamanho' tamanho="w-28" />
           <InputFormText legenda='Outros' tamanho="w-28" />
         </section>
+        <section className="glass col-span-4 flex  gap-3 items-end pb-9">
+          <div>
+            <div className="flex items-end md:gap-x-1 2xl:gap-x-2 ">
+              <InputFormText legenda='Fortitude' tamanho="w-28" value={modificadores.conMod} handle={handleInputChange} />
+              <InputFormText legenda='Habilidade' tamanho="w-28" value={modificadores['desMod']} readonly />
+              <InputFormText legenda='&#189; Nivel' tamanho="w-28" />
+              <InputFormText legenda='Outros' tamanho="w-28" />
+              <InputFormText legenda='Magic Resist' tamanho="w-28" />
+            </div>
+            <div className="flex items-end md:gap-x-1 2xl:gap-x-2">
+              <InputFormText legenda='Reflexo' tamanho="w-28" value={modificadores.conMod} handle={handleInputChange} />
+              <InputFormText legenda='Habilidade' tamanho="w-28" value={modificadores['desMod']} readonly />
+              <InputFormText legenda='&#189; Nivel' tamanho="w-28" />
+              <InputFormText legenda='Outros' tamanho="w-28" />
+              <InputFormText legenda='Magic Resist' tamanho="w-28" />
+            </div>
+            <div className="flex items-end md:gap-x-1 2xl:gap-x-2">
+              <InputFormText legenda='Vontade' tamanho="w-28" value={modificadores.conMod} handle={handleInputChange} />
+              <InputFormText legenda='Habilidade' tamanho="w-28" value={modificadores['desMod']} readonly />
+              <InputFormText legenda='&#189; Nivel' tamanho="w-28" />
+              <InputFormText legenda='Outros' tamanho="w-28" />
+              <InputFormText legenda='Magic Resist' tamanho="w-28" />
+            </div>
+          </div>
+          <div>
+            <InputFormText legenda='Redução de Dano' tamanho="w-30" />
+            <InputFormText legenda='Resistencia Elemental' tamanho="w-30" />
+            <InputFormText legenda='Resistencia Elemental' tamanho="w-30" />
+          </div>
+        </section>
       </section>
-      <section className="glass col-span-4  gap-3 flex-wrap justify-center items-end pb-9">
-      <InputFormText legenda='Fortitude' tamanho="w-28" value={modificadores.conMod} />
-      <InputFormText legenda='Reflexo' tamanho="w-28" value={modificadores.conMod} />
-      <InputFormText legenda='Vontade' tamanho="w-28" value={modificadores.conMod} />
-        
-      </section>
+
     </div>
   )
 }
