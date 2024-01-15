@@ -7,6 +7,7 @@ export default function InputFormText(props) {
   let ocultar = props.ocultar ? props.ocultar : ''
   let tamanho = props.tamanho ? props.tamanho : "w-full"
   let color = props.color ? props.color : "bg-black"
+  let bg = props.bg ? props.bg : ""
   let grow = props.grow ? "grow" : "";
   let icon = props.icon ? props.icon : "";
   if (grow == "grow") {
@@ -14,8 +15,8 @@ export default function InputFormText(props) {
   }
   return (
     <>
-      <fieldset className={`${tamanho} ${grow}`}>
-        <legend className=' text-slate-100 relative top-2 2xl:text-sm md:text-xs ml-3'>{props.legenda}</legend>
+      <fieldset className={`${tamanho} ${grow} ${bg} relative`}>
+        <legend className='absolute text-slate-100 2xl:text-sm md:text-xs ml-3 -top-2.5'>{props.legenda}</legend>
         {/* <legend style={{ marginTop: '0.4em', marginLeft: '1.3em', position: 'absolute', visibility: `${ocultar}` }}>CD</legend> */}
         <div className="flex">
           <input
