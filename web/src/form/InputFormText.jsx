@@ -9,7 +9,7 @@ export default function InputFormText(props) {
   let color = props.color ? props.color : "bg-black"
   let bg = props.bg ? props.bg : ""
   let grow = props.grow ? "grow" : "";
-  let icon = props.icon ? props.icon : "";
+  let tamanhoInput = props.tamanhoInput ? props.tamanhoInput : "2xl:h-9 md:h-7";
   if (grow == "grow") {
     tamanho = "";
   }
@@ -22,7 +22,7 @@ export default function InputFormText(props) {
           <input
             placeholder={props.placeholder}
             cor={props.cor}
-            className={`w-full text-center text-white ${color} focus:border-none focus:outline target:border-none rounded 2xl:h-9 md:h-7 2xl:text-base md:text-xs`}
+            className={`w-full text-center text-white ${color} focus:border-none focus:outline target:border-none rounded ${tamanhoInput} 2xl:text-base md:text-xs`}
             type={props.type}
             name={props.name}
             id={props.id}
