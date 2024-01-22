@@ -8,8 +8,10 @@ function Ficha() {
   // console.log(status[habilidadess]);
   const { personagem, setPersonagem } = useContext(Database)
   const habilidadess = { ...personagem.habilidades }
-  const [isChecked, setChecked] = useState(false);
-  console.log(personagem);
+  const [isChecked, setChecked] = useState({
+    acrobacia: true,
+    adestrar: false,
+  });
   // console.log(habilidadess);
   const [habilidades, setHabilidades] = useState({
     forr: 10, forPen: 0, forBon: 0,
@@ -110,8 +112,12 @@ function Ficha() {
     const newArray = [];
     setHistorico(newArray);
   };
+  
+  // console.log(isChecked);
   const handleToggle = () => {
-    setChecked(!isChecked);
+    setChecked({id:!isChecked['id']});
+    // setValorInput(isChecked => ({ ...isChecked, name: name, 'value': value, 'color': color }))
+    console.log({id:!isChecked['id']});
   };
   return (
     <div className="grid grid-cols-24 gap-y-3 gap-x-3">
@@ -132,7 +138,7 @@ function Ficha() {
         <InputFormText grow legenda="Divindade" />
       </section>
       <section className="col-span-20 grid grid-cols-24 gap-3">
-        <section className="glass col-span-4 pb-3 md:px-1 2xl:px-0 grid gap-3">
+        <section className="glass col-span-5 pb-3 md:px-1 2xl:px-0 grid gap-3">
           <div className="flex gap-x-2 items-end w-full justify-center mt-2 rounded">
             <div className=" text-center text-white 2xl:text-sm md:text-mp ">Habilidade</div>
             <div className=" text-center text-white 2xl:text-sm md:text-mp ">MOD</div>
@@ -330,10 +336,10 @@ function Ficha() {
       </section>
 
       <section className="glass col-span-4 flex flex-col gap-y-2">
-        <Pericias/>
-        <Pericias/>
-        <Pericias/>
-        <Pericias/>
+        <Pericias check={isChecked['acrobacia']} handleToggle={handleToggle} id="acrobacia" name="acrobacia"/>
+        {/* <Pericias check={isChecked} handleToggle={handleToggle} name="AdestrarAnimais"/>
+        <Pericias check={isChecked} handleToggle={handleToggle} name="Atletismo"/>
+        <Pericias check={isChecked} handleToggle={handleToggle}  placeholder="teste"/> */}
       </section>
     </div>
   )
