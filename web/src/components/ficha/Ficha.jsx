@@ -46,6 +46,7 @@ function Ficha() {
     resultado = Math.floor(resultado);
     return resultado;
   }
+  console.log(personagem);
   const { habilidades: valorHab } = personagem;
   const arrayModificador = []
   let modificadores = {};
@@ -112,17 +113,41 @@ function Ficha() {
     const newArray = [];
     setHistorico(newArray);
   };
-  
-  // console.log(isChecked);
-  const handleToggle = () => {
-    setChecked({id:!isChecked['id']});
-    // setValorInput(isChecked => ({ ...isChecked, name: name, 'value': value, 'color': color }))
-    console.log({id:!isChecked['id']});
+  // ====================================================================
+  //                   --> funções de pericias <--
+  // ====================================================================
+  const handleToggle = (event) => {
+    const { id } = event.target;
+    setChecked(isChecked => ({ ...isChecked, [id]: !isChecked[id] }))
   };
+  const pericias = [{ nome: "Acrobacia", habilidade: "des", penalidade: true },
+  { nome: "Adestrar Animais", habilidade: "car", penalidade: false },
+  { nome: "Atletismo", habilidade: "for", penalidade: true },
+  { nome: "Atuação", habilidade: "car", penalidade: false },
+  { nome: "Atuação", habilidade: "car", penalidade: false },
+  { nome: "Cavalgar", habilidade: "des", penalidade: false },
+  { nome: "Conhecimento", habilidade: "int", penalidade: false },
+  { nome: "Conhecimento", habilidade: "int", penalidade: false },
+  { nome: "Cura", habilidade: "sab", penalidade: false },
+  { nome: "Diplomacia", habilidade: "car", penalidade: false },
+  { nome: "Enganação", habilidade: "car", penalidade: false },
+  { nome: "Furtividade", habilidade: "dees", penalidade: true },
+  { nome: "Identificar Magia", habilidade: "int", penalidade: false },
+  { nome: "Iniciativa", habilidade: "des", penalidade: false },
+  { nome: "Intimidação", habilidade: "car", penalidade: false },
+  { nome: "Intuição", habilidade: "sab", penalidade: false },
+  { nome: "Ladinagem", habilidade: "des", penalidade: false },
+  { nome: "Obter Informação", habilidade: "car", penalidade: false },
+  { nome: "Ofício", habilidade: "int", penalidade: false },
+  { nome: "Ofício", habilidade: "int", penalidade: false },
+  { nome: "Percepção", habilidade: "sab", penalidade: false },
+  { nome: "Sobrevivência", habilidade: "sab", penalidade: false },]
+  // ====================================================================
+
   return (
-    <div className="grid grid-cols-24 gap-y-3 gap-x-3">
+    <div className="grid grid-cols-24 gap-y-3 gap-x-3 h-max">
       <header className="col-span-full">
-        <h1 className="text-white">Mathaius</h1>
+        <h1 className="text-white text-center text-6xl">Mathaius</h1>
       </header>
       <section className="glass col-span-full flex flex-wrap-reverse gap-y-3 gap-x-3 py-3 md:px-1 2xl:px-3">
 
@@ -137,7 +162,7 @@ function Ficha() {
         <InputFormText grow legenda="Nome" />
         <InputFormText grow legenda="Divindade" />
       </section>
-      <section className="col-span-20 grid grid-cols-24 gap-3">
+      <section className="col-span-19 grid grid-cols-24 gap-3">
         <section className="glass col-span-5 pb-3 md:px-1 2xl:px-0 grid gap-3">
           <div className="flex gap-x-2 items-end w-full justify-center mt-2 rounded">
             <div className=" text-center text-white 2xl:text-sm md:text-mp ">Habilidade</div>
@@ -335,11 +360,16 @@ function Ficha() {
         </section>
       </section>
 
-      <section className="glass col-span-4 flex flex-col gap-y-2">
-        <Pericias check={isChecked['acrobacia']} handleToggle={handleToggle} id="acrobacia" name="acrobacia"/>
-        {/* <Pericias check={isChecked} handleToggle={handleToggle} name="AdestrarAnimais"/>
-        <Pericias check={isChecked} handleToggle={handleToggle} name="Atletismo"/>
-        <Pericias check={isChecked} handleToggle={handleToggle}  placeholder="teste"/> */}
+      <section className="glass col-span-5 flex flex-col gap-y-2 px-3">
+        <div className="flex gap-x-1 items-end w-full justify-end mt-2 rounded">
+          <div className=" text-center text-white 2xl:text-sm md:text-mp w-40 bg-tormenta rounded">Pericia</div>
+          <div className=" text-center text-white 2xl:text-sm md:text-mp w-14  bg-tormenta rounded">Grad</div>
+          <div className=" text-center text-white 2xl:text-sm md:text-mp w-12  bg-tormenta rounded">Hab</div>
+          <div className=" text-center text-white 2xl:text-sm md:text-mp w-12  bg-tormenta rounded">Outros</div>
+        </div>
+        {pericias.map((item, index) =>
+          <Pericias key={index} check={isChecked[item['nome']]} Toggle={handleToggle} id={item['nome']} name={item['nome']} />
+        )}
       </section>
     </div>
   )

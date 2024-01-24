@@ -20,9 +20,7 @@ function App() {
   return (
     <Database.Provider value={{ personagem, setPersonagem }}>
       <div className="bg-hero bg-cover">
-        <Sidebar>
           <Ficha/>
-        </Sidebar>
       </div>
     </Database.Provider>
   )
