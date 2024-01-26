@@ -9,7 +9,6 @@ function Pericias(props) {
  const mod = props.mod ? props.mod : 0
  const outros = props.outros ? props.outros : 0
  const { personagem, setPersonagem } = useContext(Database)
- console.log(personagem);
  return (
   
   <>
@@ -27,9 +26,9 @@ function Pericias(props) {
      <div className="bg-black rounded h-5 w-40 text-slate-100 flex items-center justify-center px-2 py-1">{name}</div> :''
      // <InputFormText tamanhoInput={"h-5"} tamanho={"w-8"} value={5} placeholder={}/> 
     }
-    <InputFormText tamanhoInput={"h-5"} tamanho={"w-14"} value={5} />
-    <InputFormText tamanhoInput={"h-5"} tamanho={"w-12"} value={5} />
-    <InputFormText tamanhoInput={"h-5"} tamanho={"w-12"} value={5} />
+    <InputFormText tamanhoInput={"h-5"} tamanho={"w-14"} value={5} readonly />
+    <InputFormText tamanhoInput={"h-5"} tamanho={"w-12"} value={5} readonly />
+    <InputFormText tamanhoInput={"h-5"} tamanho={"w-12"} value={5} readonly />
     {/* <InputFormText tamanhoInput={"h-5"} tamanho={"w-8"} value={5} /> */}
 
    </div>

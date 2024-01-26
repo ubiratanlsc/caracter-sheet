@@ -2,16 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import InputFormText from "../../form/InputFormText";
 import InputFormButton from "../../form/InputFormButton";
 import Database from "../../context/Database.jsx";
-import Row from "../components/Row.jsx";
 import Pericias from "../pericias/Pericias.jsx";
 function Ficha() {
   // console.log(status[habilidadess]);
   const { personagem, setPersonagem } = useContext(Database)
-  const habilidadess = { ...personagem.habilidades }
-  const [isChecked, setChecked] = useState({
-    acrobacia: true,
-    adestrar: false,
-  });
+  const [isChecked, setChecked] = useState({});
   // console.log(habilidadess);
   const [habilidades, setHabilidades] = useState({
     forr: 10, forPen: 0, forBon: 0,
@@ -23,9 +18,16 @@ function Ficha() {
   });
   const [historico, setHistorico] = useState([])
   const array = ["for", "des", "con", "int", "sab", "car"]
-  let nv = habilidades.nivel ? habilidades.nivel : 0
+
+  // ====================================================================
+  //                           --> nivel <--
+  // ====================================================================
+  let nv = personagem['basicos']['nivel'] ? personagem['basicos']['nivel'] : 0
   let meioNv = nv / 2
   meioNv = Math.floor(meioNv)
+  //=====================================================================
+
+  
   function alteraArmadura() {
     let base = 10;
     let modHab = habilidades.desBon
@@ -46,7 +48,6 @@ function Ficha() {
     resultado = Math.floor(resultado);
     return resultado;
   }
-  console.log(personagem);
   const { habilidades: valorHab } = personagem;
   const arrayModificador = []
   let modificadores = {};
@@ -91,6 +92,9 @@ function Ficha() {
       atualizarResultado(name, value)
     }
   };
+  // ====================================================================
+  //               --> funções de historico de dano <--
+  // ====================================================================
   let [valorInput, setValorInput] = useState();
   const handleHistoricoChange = (event) => {
     const { name, value } = event.target;
@@ -158,7 +162,7 @@ function Ficha() {
         <InputFormText grow legenda="Sexo" />
         <InputFormText grow legenda="Idade" />
         <InputFormText grow legenda="Deslocamento" />
-        <InputFormText grow legenda="Nivel" id="nivel" name="nivel" handle={handleInputChange} />
+        <InputFormText grow legenda="Nivel" id="basicos" name="nivel" handle={handleInputChange} value={personagem.basicos['nivel']} />
         <InputFormText grow legenda="Nome" />
         <InputFormText grow legenda="Divindade" />
       </section>
@@ -258,25 +262,25 @@ function Ficha() {
         <section className="glass col-span-12 md:px-1 2xl:px-3 md:py-1 2xl:py-3 flex flex-col gap-3">
           <div className="flex gap-2">
             <div className="bg-tormenta rounded w-56 text-center align-middle text-slate-200 flex justify-center items-center">Corpo a Corpo</div>
-            <InputFormText legenda="total" grow value={5} />
-            <InputFormText legenda="BBA" grow value={5} />
-            <InputFormText legenda="Modificador" grow value={5} />
-            <InputFormText legenda="Tamanho" grow value={5} />
-            <InputFormText legenda="Outros" grow value={5} />
+            <InputFormText legenda="total" grow value={5} readonly />
+            <InputFormText legenda="BBA" grow value={5} readonly />
+            <InputFormText legenda="Modificador" grow value={5} readonly />
+            <InputFormText legenda="Tamanho" grow value={5} readonly />
+            <InputFormText legenda="Outros" grow value={5} readonly />
           </div>
           <div className="flex gap-2">
             <div className="bg-tormenta rounded w-56 text-nowrap text-slate-200 flex justify-center items-center">Distancia</div>
-            <InputFormText legenda="" grow value={5} />
-            <InputFormText legenda="" grow value={5} />
-            <InputFormText legenda="" grow value={5} />
-            <InputFormText legenda="" grow value={5} />
-            <InputFormText legenda="" grow value={5} />
+            <InputFormText legenda="" grow value={5} readonly />
+            <InputFormText legenda="" grow value={5} readonly />
+            <InputFormText legenda="" grow value={5} readonly />
+            <InputFormText legenda="" grow value={5} readonly />
+            <InputFormText legenda="" grow value={5} readonly />
           </div>
         </section>
         <section className="glass col-span-12">
           <InputFormText legenda="habilidade" grow />
-          <InputFormText legenda="" grow value={5} />
-          <InputFormText legenda="" grow value={5} />
+          <InputFormText legenda="" grow value={5} readonly />
+          <InputFormText legenda="" grow value={5} readonly />
         </section>
         <section className="glass col-span-12 py-2 px-3 flex flex-col gap-2">
           <div className="text-nowrap text-slate-200 flex justify-between items-center gap-2 text-center">
