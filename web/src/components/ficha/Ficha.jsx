@@ -3,6 +3,9 @@ import InputFormText from "../../form/InputFormText";
 import InputFormButton from "../../form/InputFormButton";
 import Database from "../../context/Database.jsx";
 import Pericias from "../pericias/Pericias.jsx";
+import { useInt }  from '../../functions/newfunction.js';
+import { useModificador } from "../../functions/modificador.js";
+import { useDefesas } from "../../functions/defesas.js";
 function Ficha() {
   // console.log(status[habilidadess]);
   const { personagem, setPersonagem } = useContext(Database)
@@ -19,15 +22,22 @@ function Ficha() {
   const [historico, setHistorico] = useState([])
   const array = ["for", "des", "con", "int", "sab", "car"]
 
+
+  // ====================================================================
+
+  const { InputChangeInt, meioNv } = useInt()
+  const { modificadores } = useModificador()
+  const { classe_armadura, armadura, escudo, tamanho, outros,fortitude, reflexos, vontade } = useDefesas()
+
   // ====================================================================
   //                           --> nivel <--
   // ====================================================================
-  let nv = personagem['basicos']['nivel'] ? personagem['basicos']['nivel'] : 0
-  let meioNv = nv / 2
-  meioNv = Math.floor(meioNv)
+  // let nv = personagem['basicos']['nivel'] ? personagem['basicos']['nivel'] : 0
+  // let meioNv = nv / 2
+  // meioNv = Math.floor(meioNv)
   //=====================================================================
 
-  
+
   function alteraArmadura() {
     let base = 10;
     let modHab = habilidades.desBon
@@ -42,37 +52,7 @@ function Ficha() {
     return subCA;
   }
   let sub = alteraArmadura()
-  function alteraModificador(valor) {
-    let resultado = valor - 10;
-    resultado /= 2;
-    resultado = Math.floor(resultado);
-    return resultado;
-  }
-  const { habilidades: valorHab } = personagem;
-  const arrayModificador = []
-  let modificadores = {};
-  function modificador() {
-    let contador = 0;
-    let total = 0;
-    Object.keys(valorHab).forEach((chave) => {
-      let chaveAtual = `${chave}`.substring(0, 3)
-      total = total += parseInt(valorHab[chave]);
-      contador++
-      if (contador == 3) {
-        let modificador = alteraModificador(total)
-        const obj = new Object()
-        obj[`${chaveAtual}Mod`] = modificador;
-        arrayModificador.push(obj);
-        total = 0;
-        contador = 0;
-      }
-    });
-    modificadores = arrayModificador.reduce((resultado, objeto) => {
-      return { ...resultado, ...objeto };
-    }, {});
 
-  } modificador()
-  // setHabilidades(habilidades => ({ ...habilidades, identificador: parseInt(resultado) }))
   const atualizarResultado = (name, value) => {
     // const { habilidades: valorFor, forPen, forMod } = personagem;
     // const soma = parseInt(value) + parseInt(habilidadess[`${newName}Bon`]) - parseInt(habilidadess[`${newName}Pen`])
@@ -162,7 +142,7 @@ function Ficha() {
         <InputFormText grow legenda="Sexo" />
         <InputFormText grow legenda="Idade" />
         <InputFormText grow legenda="Deslocamento" />
-        <InputFormText grow legenda="Nivel" id="basicos" name="nivel" handle={handleInputChange} value={personagem.basicos['nivel']} />
+        <InputFormText grow legenda="Nivel" id="basicos" name="nivel" handle={InputChangeInt} value={personagem.basicos['nivel']} />
         <InputFormText grow legenda="Nome" />
         <InputFormText grow legenda="Divindade" />
       </section>
@@ -211,14 +191,15 @@ function Ficha() {
             <fieldset className="relative">
               <legend className="text-slate-100 absolute -top-2.5 text-sm ml-3">CA</legend>
               <div className="bg-black text-white w-28 md:h-7 2xl:h-9 rounded flex items-center justify-around gap-1">
+                {classe_armadura}
               </div>
             </fieldset>
-            <InputFormText legenda='&#189; Nivel' grow />
-            <InputFormText legenda='Habilidade' grow value={modificadores.des} readonly />
-            <InputFormText legenda='Armadura' grow />
-            <InputFormText legenda='Escudo' grow />
-            <InputFormText legenda='Tamanho' grow />
-            <InputFormText legenda='Outros' grow />
+            <InputFormText legenda='&#189; Nivel' grow value={meioNv} readonly/>
+            <InputFormText legenda='Habilidade' grow value={modificadores['desMod']} readonly />
+            <InputFormText legenda='Armadura' grow value={armadura} readonly/>
+            <InputFormText legenda='Escudo' grow value={escudo} readonly/>
+            <InputFormText legenda='Tamanho' grow value={tamanho} readonly/>
+            <InputFormText legenda='Outros' grow value={outros} readonly/>
           </section>
           {/*Resistencias fortitude reflexo e vontade */}
           <section className="flex gap-3 ">
@@ -229,22 +210,22 @@ function Ficha() {
                 <div className=" text-center text-white 2xl:text-sm md:text-mp ">Outros</div>
               </div>
               <div className="flex items-end md:gap-x-1 2xl:gap-x-3">
-                <InputFormText legenda='Fortitude' tamanho="w-20" value={modificadores.conMod} handle={handleInputChange} />
-                <InputFormText legenda='' tamanho="w-20" value={modificadores['desMod']} readonly />
-                <InputFormText legenda='' tamanho="w-20" />
-                <InputFormText legenda='' tamanho="w-20" />
+                <InputFormText legenda='Fortitude' tamanho="w-20" value={fortitude}  readonly/>
+                <InputFormText legenda='' tamanho="w-20" value={modificadores['conMod']} readonly />
+                <InputFormText legenda='' tamanho="w-20" value={meioNv} readonly />
+                <InputFormText legenda='' tamanho="w-20" id="defesas" nome="fortOutros" value={personagem.defesas['fortOutros']} handle={handleInputChange} />
               </div>
               <div className="flex items-end md:gap-x-1 2xl:gap-x-3">
-                <InputFormText legenda='Reflexo' tamanho="w-20" value={modificadores.conMod} handle={handleInputChange} />
+                <InputFormText legenda='Reflexo' tamanho="w-20" value={reflexos} readonly />
                 <InputFormText legenda='' tamanho="w-20" value={modificadores['desMod']} readonly />
-                <InputFormText legenda='' tamanho="w-20" />
-                <InputFormText legenda='' tamanho="w-20" />
+                <InputFormText legenda='' tamanho="w-20" value={meioNv} readonly />
+                <InputFormText legenda='' tamanho="w-20" id="defesas" nome="reflOutros" value={personagem.defesas['reflOutros']} handle={handleInputChange} />
               </div>
               <div className="flex items-end md:gap-x-1 2xl:gap-x-3">
-                <InputFormText legenda='Vontade' tamanho="w-20" value={modificadores.conMod} handle={handleInputChange} />
-                <InputFormText legenda='' tamanho="w-20" value={modificadores['desMod']} readonly />
-                <InputFormText legenda='' tamanho="w-20" />
-                <InputFormText legenda='' tamanho="w-20" />
+                <InputFormText legenda='Vontade' tamanho="w-20" value={vontade} readonly/>
+                <InputFormText legenda='' tamanho="w-20" value={modificadores['sabMod']} readonly />
+                <InputFormText legenda='' tamanho="w-20" value={meioNv} readonly />
+                <InputFormText legenda='' tamanho="w-20" id="defesas" nome="vontOutros" value={personagem.defesas['vontOutros']} handle={handleInputChange} />
               </div>
             </section>
             <section className="glass md:px-1 2xl:px-3">
