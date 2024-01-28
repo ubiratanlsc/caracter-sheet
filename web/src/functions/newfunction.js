@@ -8,6 +8,7 @@ export const useInt = () => {
 
  const InputChangeInt = (event) => {
   const { name, value, id } = event.target;
+  console.log(`Name:${name} value:${value} id:${id} `);
   let valor = value ? value : 0;
   setPersonagem(personagem => ({ ...personagem, [id]: { ...personagem[id], [name]: parseInt(valor) } }))
  };

@@ -11,9 +11,11 @@ function App() {
     },
     defesas: {
       totalCA: 0, meioNivel: 0, habilidade: 0,
-      armadura: 0, escudo: 0, penalidadeTamanho: 0,
+      armadura: 0, penalidadeTamanho: 0,
       base: 10, outros: 0, penalidadeOutros: 0,
-      fortOutros: 0, reflOutros: 0, vontOutros: 0
+      fortOutros: 0, reflOutros: 0, vontOutros: 0,
+      armadura1: 0, armadura2: 0, armadura3: 0,
+      armadura4: 0, armadura4: 0
     },
     habilidades: {
       for: 10, forPen: 0, forBon: 0,

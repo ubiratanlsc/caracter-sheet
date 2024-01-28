@@ -18,20 +18,19 @@ export const useDefesas = () => {
 
  let base = 10;
  let modHab = modificadores['desMod']
- let armadura = personagem['defesas']['armadura'] ? personagem['defesas']['armadura'] : 0
- let escudo = personagem['defesas']['escudo'] ? personagem['defesas']['escudo'] : 0
+ let armaduras = ['armadura0', 'armadura1', 'armadura2', 'armadura3', 'armadura4', 'armadura5'];
+ let somaArmaduras = armaduras.reduce((total, tipo) => total + (personagem['defesas'][tipo] || 0), 0);
  let outros = personagem['defesas']['outros'] ? personagem['defesas']['outros'] : 0
  let tamanho = personagem['defesas']['tamanho'] ? personagem['defesas']['tamanho'] : 0
  let penalidadeCA = personagem['defesas']['penalidadeCA'] ? personagem['defesas']['penalidadeCA'] : 0
- let somaCA = base + meioNv + modHab + armadura + escudo + outros
+ let somaCA = base + meioNv + modHab + somaArmaduras + outros
  let classe_armadura = somaCA - penalidadeCA
-
  // fortOutros: 0, vontOutros: 0, reflOutros: 0
  let fortitude = meioNv + modificadores['conMod'] + personagem['defesas']['fortOutros']
  let reflexos = meioNv + modificadores['desMod'] + personagem['defesas']['reflOutros']
  let vontade = meioNv + modificadores['sabMod'] + personagem['defesas']['vontOutros']
 
- return { classe_armadura, armadura, escudo, tamanho, outros, fortitude, reflexos, vontade};
+ return { classe_armadura, somaArmaduras, tamanho, outros, fortitude, reflexos, vontade};
 };
 
 // export function useInt() {
