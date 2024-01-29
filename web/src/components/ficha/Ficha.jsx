@@ -3,7 +3,7 @@ import InputFormText from "../../form/InputFormText";
 import InputFormButton from "../../form/InputFormButton";
 import Database from "../../context/Database.jsx";
 import Pericias from "../pericias/Pericias.jsx";
-import { useInt }  from '../../functions/newfunction.js';
+import { useInt } from '../../functions/newfunction.js';
 import { useModificador } from "../../functions/modificador.js";
 import { useDefesas } from "../../functions/defesas.js";
 function Ficha() {
@@ -21,14 +21,14 @@ function Ficha() {
   });
   const [historico, setHistorico] = useState([])
   const array = ["for", "des", "con", "int", "sab", "car"]
-  const arrayItens = [1,2,3,4]
-console.log(arrayItens);
+  const arrayItens = [1, 2, 3, 4]
+  console.log(arrayItens);
 
   // ====================================================================
 
   const { InputChangeInt, meioNv } = useInt()
   const { modificadores } = useModificador()
-  const { classe_armadura, somaArmaduras, tamanho, outros,fortitude, reflexos, vontade } = useDefesas()
+  const { classe_armadura, somaArmaduras, tamanho, outros, fortitude, reflexos, vontade } = useDefesas()
 
   // ====================================================================
   //                           --> nivel <--
@@ -168,11 +168,11 @@ console.log(arrayItens);
                 {classe_armadura}
               </div>
             </fieldset>
-            <InputFormText legenda='&#189; Nivel' grow value={meioNv} readonly/>
+            <InputFormText legenda='&#189; Nivel' grow value={meioNv} readonly />
             <InputFormText legenda='Habilidade' grow value={modificadores['desMod']} readonly />
-            <InputFormText legenda='Armadura' grow value={somaArmaduras} readonly/>
-            <InputFormText legenda='Tamanho' grow value={tamanho} handle={InputChangeInt} id={"defesas"} name="tamanho"/>
-            <InputFormText legenda='Outros' grow value={outros} readonly/>
+            <InputFormText legenda='Armadura' grow value={somaArmaduras} readonly />
+            <InputFormText legenda='Tamanho' grow value={tamanho} handle={InputChangeInt} id={"defesas"} name="tamanho" />
+            <InputFormText legenda='Outros' grow value={outros} readonly />
           </section>
           {/*Resistencias fortitude reflexo e vontade */}
           <section className="flex gap-3 ">
@@ -183,7 +183,7 @@ console.log(arrayItens);
                 <div className=" text-center text-white 2xl:text-sm md:text-mp ">Outros</div>
               </div>
               <div className="flex items-end md:gap-x-1 2xl:gap-x-3">
-                <InputFormText legenda='Fortitude' tamanho="w-20" value={fortitude}  readonly/>
+                <InputFormText legenda='Fortitude' tamanho="w-20" value={fortitude} readonly />
                 <InputFormText legenda='' tamanho="w-20" value={modificadores['conMod']} readonly />
                 <InputFormText legenda='' tamanho="w-20" value={meioNv} readonly />
                 <InputFormText legenda='' tamanho="w-20" id="defesas" name="fortOutros" value={personagem.defesas['fortOutros']} handle={InputChangeInt} />
@@ -195,7 +195,7 @@ console.log(arrayItens);
                 <InputFormText legenda='' tamanho="w-20" id="defesas" name="reflOutros" value={personagem.defesas['reflOutros']} handle={handleInputChange} />
               </div>
               <div className="flex items-end md:gap-x-1 2xl:gap-x-3">
-                <InputFormText legenda='Vontade' tamanho="w-20" value={vontade} readonly/>
+                <InputFormText legenda='Vontade' tamanho="w-20" value={vontade} readonly />
                 <InputFormText legenda='' tamanho="w-20" value={modificadores['sabMod']} readonly />
                 <InputFormText legenda='' tamanho="w-20" value={meioNv} readonly />
                 <InputFormText legenda='' tamanho="w-20" id="defesas" name="vontOutros" value={personagem['defesas']['vontOutros']} handle={handleInputChange} />
@@ -214,6 +214,14 @@ console.log(arrayItens);
         </section>
 
         <section className="glass col-span-12 md:px-1 2xl:px-3 md:py-1 2xl:py-3 flex flex-col gap-3">
+        <div className="text-nowrap text-slate-200 flex justify-between items-center gap-2 text-center bg-black ">
+            <div className="w-32 px-5 bg-tormenta rounded">Tipo</div>
+            {/* <span className="w-20 grow bg-tormenta rounded">Bonus</span>
+            <span className="w-20 grow bg-tormenta rounded">Dano</span>
+            <span className="w-20 grow bg-tormenta rounded">Critico</span>
+            <span className="w-20 grow bg-tormenta rounded">Dist</span>
+            <span className="w-20 grow bg-tormenta rounded">Kg</span> */}
+          </div>
           <div className="flex gap-2">
             <div className="bg-tormenta rounded w-56 text-center align-middle text-slate-200 flex justify-center items-center">Corpo a Corpo</div>
             <InputFormText legenda="total" grow value={5} readonly />
@@ -239,50 +247,22 @@ console.log(arrayItens);
         <section className="glass col-span-12 py-2 px-3 flex flex-col gap-2">
           <div className="text-nowrap text-slate-200 flex justify-between items-center gap-2 text-center ">
             <span className="w-80 bg-tormenta rounded">Armas / Ataques / Manobras</span>
-            <span className="w-20 bg-tormenta rounded">Total</span>
             <span className="w-20 bg-tormenta rounded">Bonus</span>
             <span className="w-20 bg-tormenta rounded">Dano</span>
             <span className="w-20 bg-tormenta rounded">Critico</span>
             <span className="w-20 bg-tormenta rounded">Dist</span>
             <span className="w-20 bg-tormenta rounded">Kg</span>
           </div>
-          <div className="flex gap-2">
-            <InputFormText tamanho={"w-80"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-          </div>
-          <div className="flex gap-2">
-            <InputFormText tamanho={"w-80"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-          </div>
-          <div className="flex gap-2">
-            <InputFormText tamanho={"w-80"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-          </div>
-          <div className="flex gap-2">
-            <InputFormText tamanho={"w-80"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-          </div>
-
+          {arrayItens.map((item, index) =>
+            <div className="flex gap-2">
+              <InputFormText tamanho={"w-80"} />
+              <InputFormText tamanho={"w-20"} />
+              <InputFormText tamanho={"w-20"} />
+              <InputFormText tamanho={"w-20"} />
+              <InputFormText tamanho={"w-20"} />
+              <InputFormText tamanho={"w-20"} />
+            </div>
+          )}
         </section>
         <section className="glass col-span-12 py-2 px-3 flex flex-col gap-2">
           <div className="text-nowrap text-slate-200 flex justify-between items-center gap-2 text-center">
@@ -294,12 +274,12 @@ console.log(arrayItens);
           </div>
           {arrayItens.map((item, index) =>
             <div key={index} className="flex gap-2 justify-between">
-            <InputFormText tamanho={"w-80"} />
-            <InputFormText tamanho={"w-20"} id={'defesas'} name={`armadura${item}`} handle={InputChangeInt} value={personagem.defesas[`armadura${item}`]} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-          </div>
+              <InputFormText tamanho={"w-80"} />
+              <InputFormText tamanho={"w-20"} id={'defesas'} name={`armadura${item}`} handle={InputChangeInt} value={personagem.defesas[`armadura${item}`]} />
+              <InputFormText tamanho={"w-20"} />
+              <InputFormText tamanho={"w-20"} />
+              <InputFormText tamanho={"w-20"} />
+            </div>
           )}
         </section>
       </section>

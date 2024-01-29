@@ -42,8 +42,11 @@ export default {
       fontSize: {
         pp: '0.25rem',
         mp: '0.65rem',
-      }
+      },
       // maxWidth: {},
+      width: {
+        // '1':
+      },
     },
     plugins: [],
   }
