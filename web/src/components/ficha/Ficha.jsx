@@ -21,7 +21,8 @@ function Ficha() {
   });
   const [historico, setHistorico] = useState([])
   const array = ["for", "des", "con", "int", "sab", "car"]
-
+  const arrayItens = [1,2,3,4]
+console.log(arrayItens);
 
   // ====================================================================
 
@@ -170,7 +171,7 @@ function Ficha() {
             <InputFormText legenda='&#189; Nivel' grow value={meioNv} readonly/>
             <InputFormText legenda='Habilidade' grow value={modificadores['desMod']} readonly />
             <InputFormText legenda='Armadura' grow value={somaArmaduras} readonly/>
-            <InputFormText legenda='Tamanho' grow value={tamanho} readonly/>
+            <InputFormText legenda='Tamanho' grow value={tamanho} handle={InputChangeInt} id={"defesas"} name="tamanho"/>
             <InputFormText legenda='Outros' grow value={outros} readonly/>
           </section>
           {/*Resistencias fortitude reflexo e vontade */}
@@ -291,34 +292,15 @@ function Ficha() {
             <span className="w-20 bg-tormenta rounded">Penalidade</span>
             <span className="w-20 bg-tormenta rounded">Kg</span>
           </div>
-          <div className="flex gap-2 justify-between">
+          {arrayItens.map((item, index) =>
+            <div key={index} className="flex gap-2 justify-between">
             <InputFormText tamanho={"w-80"} />
-            <InputFormText tamanho={"w-20"} id={'defesas'} name={'armadura1'} handle={InputChangeInt} value={personagem.defesas['armadura1']} />
+            <InputFormText tamanho={"w-20"} id={'defesas'} name={`armadura${item}`} handle={InputChangeInt} value={personagem.defesas[`armadura${item}`]} />
             <InputFormText tamanho={"w-20"} />
             <InputFormText tamanho={"w-20"} />
             <InputFormText tamanho={"w-20"} />
           </div>
-          <div className="flex gap-2 justify-between">
-            <InputFormText tamanho={"w-80"} />
-            <InputFormText tamanho={"w-20"} id={'defesas'} name={'armadura2'} handle={InputChangeInt} value={personagem.defesas['armadura2']} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-          </div>
-          <div className="flex gap-2 justify-between">
-            <InputFormText tamanho={"w-80"} />
-            <InputFormText tamanho={"w-20"} id={'defesas'} name={'armadura3'} handle={InputChangeInt} value={personagem.defesas['armadura3']} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-          </div>
-          <div className="flex gap-2 justify-between">
-            <InputFormText tamanho={"w-80"} />
-            <InputFormText tamanho={"w-20"} id={'defesas'} name={'armadura4'} handle={InputChangeInt} value={personagem.defesas['armadura4']} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-            <InputFormText tamanho={"w-20"} />
-          </div>
+          )}
         </section>
       </section>
 
