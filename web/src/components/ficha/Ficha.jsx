@@ -10,7 +10,7 @@ function Ficha() {
   // console.log(status[habilidadess]);
   const { personagem, setPersonagem } = useContext(Database)
   const [isChecked, setChecked] = useState({});
-  // console.log(habilidadess);
+  console.log(isChecked);
   const [habilidades, setHabilidades] = useState({
     forr: 10, forPen: 0, forBon: 0,
     des: 10, desPen: 0, desBon: 0,
@@ -22,7 +22,6 @@ function Ficha() {
   const [historico, setHistorico] = useState([])
   const array = ["for", "des", "con", "int", "sab", "car"]
   const arrayItens = [1, 2, 3, 4]
-  console.log(arrayItens);
 
   // ====================================================================
 
@@ -214,21 +213,21 @@ function Ficha() {
         </section>
 
         <section className="glass col-span-12 md:px-1 2xl:px-3 md:py-1 2xl:py-3 flex flex-col gap-3">
-        <div className="text-nowrap text-slate-200 flex justify-between items-center gap-2 text-center bg-black ">
-            <div className="w-32 px-5 bg-tormenta rounded">Tipo</div>
-            {/* <span className="w-20 grow bg-tormenta rounded">Bonus</span>
+        <div className="text-nowrap text-slate-200 flex justify-between items-center gap-2 text-center ">
+            <div className="w-[140px] px-5 bg-tormenta rounded">Tipo</div>
+            <span className="w-20 grow bg-tormenta rounded">Total</span>
             <span className="w-20 grow bg-tormenta rounded">Dano</span>
             <span className="w-20 grow bg-tormenta rounded">Critico</span>
             <span className="w-20 grow bg-tormenta rounded">Dist</span>
-            <span className="w-20 grow bg-tormenta rounded">Kg</span> */}
+            <span className="w-20 grow bg-tormenta rounded">Kg</span>
           </div>
           <div className="flex gap-2">
             <div className="bg-tormenta rounded w-56 text-center align-middle text-slate-200 flex justify-center items-center">Corpo a Corpo</div>
-            <InputFormText legenda="total" grow value={5} readonly />
-            <InputFormText legenda="BBA" grow value={5} readonly />
-            <InputFormText legenda="Modificador" grow value={5} readonly />
-            <InputFormText legenda="Tamanho" grow value={5} readonly />
-            <InputFormText legenda="Outros" grow value={5} readonly />
+            <InputFormText legenda="" grow value={5} readonly />
+            <InputFormText legenda="" grow value={5} readonly />
+            <InputFormText legenda="" grow value={5} readonly />
+            <InputFormText legenda="" grow value={5} readonly />
+            <InputFormText legenda="" grow value={5} readonly />
           </div>
           <div className="flex gap-2">
             <div className="bg-tormenta rounded w-56 text-nowrap text-slate-200 flex justify-center items-center">Distancia</div>
@@ -254,7 +253,7 @@ function Ficha() {
             <span className="w-20 bg-tormenta rounded">Kg</span>
           </div>
           {arrayItens.map((item, index) =>
-            <div className="flex gap-2">
+            <div key={index} className="flex gap-2">
               <InputFormText tamanho={"w-80"} />
               <InputFormText tamanho={"w-20"} />
               <InputFormText tamanho={"w-20"} />
