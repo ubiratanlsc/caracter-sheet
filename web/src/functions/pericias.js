@@ -2,11 +2,12 @@
 import { useContext, useState } from 'react';
 import Database from '../context/Database';
 import { useInt } from './newfunction';
+import { useModificador } from './modificador';
 
 
 export const usePericias = () => {
  const [isChecked, setChecked] = useState({
-  Acrobacia: false,
+  Acrobacia: true,
   Adestrar_Animais: false,
   Atletismo: false,
   Atuação: false,
@@ -32,21 +33,26 @@ export const usePericias = () => {
   Sobrevivência: false,
  });
  const { personagem, setPersonagem } = useContext(Database)
+ const { modificadores } = useModificador()
  const { meioNv } = useInt();
-
  const handleToggle = (event) => {
   const { id } = event.target;
   setChecked(isChecked => ({ ...isChecked, [id]: !isChecked[id] }))
  };
+ let arrayPericias = []
  const treino = (nome, habilidade, penalidade) => {
-  const nivel = personagem['basicos']['nivel'];
-  Object.entries(isChecked).forEach(([key, value]) => {
-   console.log(key, value);
-   if(key = nome) {
-    
-   }
-  });
- }//
+  const nivel = personagem['basicos']['nivel']
+  const mod = modificadores[`${habilidade}Mod`]
+  const outros = 0;
+  const penalidades = 0;
+  let graduacao = 0;
+  if (isChecked[nome] == true) {
+   return graduacao = nivel + 3 + mod + outros - penalidades;
+  } else {
+   return graduacao = Math.floor(nivel / 2) + mod + outros - penalidades;
+  }
+ }
+
 
  const pericias = [
   { nome: "Acrobacia", habilidade: "des", penalidade: true },
@@ -60,7 +66,7 @@ export const usePericias = () => {
   { nome: "Cura", habilidade: "sab", penalidade: false },
   { nome: "Diplomacia", habilidade: "car", penalidade: false },
   { nome: "Enganação", habilidade: "car", penalidade: false },
-  { nome: "Furtividade", habilidade: "dees", penalidade: true },
+  { nome: "Furtividade", habilidade: "des", penalidade: true },
   { nome: "Identificar Magia", habilidade: "int", penalidade: false },
   { nome: "Iniciativa", habilidade: "des", penalidade: false },
   { nome: "Intimidação", habilidade: "car", penalidade: false },
@@ -73,15 +79,5 @@ export const usePericias = () => {
   { nome: "Sobrevivência", habilidade: "sab", penalidade: false },]
 
 
-
- return { handleToggle, pericias };
+ return { handleToggle, treino, isChecked, setChecked, pericias, treino};
 };
-
-// export function useInt() {
-//   const { personagem, setPersonagem } = useContext(Database)
-//   const InputChangeInt = (event) => {
-//    const { name, value, id } = event.target;
-//    let valor = value ? value : 0;
-//    setPersonagem(personagem => ({ ...personagem, [id]: { ...personagem[id], [name]: parseInt(valor) } }))
-//   };
-//  }

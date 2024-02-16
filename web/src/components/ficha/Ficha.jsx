@@ -6,11 +6,10 @@ import Pericias from "../pericias/Pericias.jsx";
 import { useInt } from '../../functions/newfunction.js';
 import { useModificador } from "../../functions/modificador.js";
 import { useDefesas } from "../../functions/defesas.js";
+import { usePericias } from "../../functions/pericias.js";
 function Ficha() {
   // console.log(status[habilidadess]);
   const { personagem, setPersonagem } = useContext(Database)
-  const [isChecked, setChecked] = useState({});
-  console.log(isChecked);
   const [habilidades, setHabilidades] = useState({
     forr: 10, forPen: 0, forBon: 0,
     des: 10, desPen: 0, desBon: 0,
@@ -73,32 +72,8 @@ function Ficha() {
   // ====================================================================
   //                   --> funções de pericias <--
   // ====================================================================
-  const handleToggle = (event) => {
-    const { id } = event.target;
-    setChecked(isChecked => ({ ...isChecked, [id]: !isChecked[id] }))
-  };
-  const pericias = [{ nome: "Acrobacia", habilidade: "des", penalidade: true },
-  { nome: "Adestrar Animais", habilidade: "car", penalidade: false },
-  { nome: "Atletismo", habilidade: "for", penalidade: true },
-  { nome: "Atuação", habilidade: "car", penalidade: false },
-  { nome: "Atuação", habilidade: "car", penalidade: false },
-  { nome: "Cavalgar", habilidade: "des", penalidade: false },
-  { nome: "Conhecimento", habilidade: "int", penalidade: false },
-  { nome: "Conhecimento", habilidade: "int", penalidade: false },
-  { nome: "Cura", habilidade: "sab", penalidade: false },
-  { nome: "Diplomacia", habilidade: "car", penalidade: false },
-  { nome: "Enganação", habilidade: "car", penalidade: false },
-  { nome: "Furtividade", habilidade: "dees", penalidade: true },
-  { nome: "Identificar Magia", habilidade: "int", penalidade: false },
-  { nome: "Iniciativa", habilidade: "des", penalidade: false },
-  { nome: "Intimidação", habilidade: "car", penalidade: false },
-  { nome: "Intuição", habilidade: "sab", penalidade: false },
-  { nome: "Ladinagem", habilidade: "des", penalidade: false },
-  { nome: "Obter Informação", habilidade: "car", penalidade: false },
-  { nome: "Ofício", habilidade: "int", penalidade: false },
-  { nome: "Ofício", habilidade: "int", penalidade: false },
-  { nome: "Percepção", habilidade: "sab", penalidade: false },
-  { nome: "Sobrevivência", habilidade: "sab", penalidade: false },]
+
+  const { handleToggle, isChecked, setChecked, pericias, treino } = usePericias()
   // ====================================================================
 
   return (
@@ -291,7 +266,7 @@ function Ficha() {
           <div className=" text-center text-white 2xl:text-sm md:text-mp w-12  bg-tormenta rounded">Outros</div>
         </div>
         {pericias.map((item, index) =>
-          <Pericias key={index} check={isChecked[item['nome']]} Toggle={handleToggle} id={item['nome']} name={item['nome']} />
+          <Pericias key={index} check={isChecked[item['nome']]} Toggle={handleToggle} id={item['nome']} name={item['nome']} graduacao={treino(item['nome'], item['habilidade'])} mod={modificadores[`${item}Mod`]}/>
         )}
       </section>
     </div>
