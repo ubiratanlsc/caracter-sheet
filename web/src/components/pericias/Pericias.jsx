@@ -30,7 +30,7 @@ function Pericias(props) {
     }
     <InputFormText tamanhoInput={"h-5"} tamanho={"w-14"} value={graduacao} readonly />
     <InputFormText tamanhoInput={"h-5"} tamanho={"w-12"} value={mod} readonly />
-    <InputFormText tamanhoInput={"h-5"} tamanho={"w-12"} value={outros} readonly />
+    <InputFormText tamanhoInput={"h-5"} tamanho={"w-12"} name={name} id={props.id} value={outros} handle={props.handleFunc} />
 
    </div>
   </>

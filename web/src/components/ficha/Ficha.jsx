@@ -266,7 +266,7 @@ function Ficha() {
           <div className=" text-center text-white 2xl:text-sm md:text-mp w-12  bg-tormenta rounded">Outros</div>
         </div>
         {pericias.map((item, index) =>
-          <Pericias key={index} check={isChecked[item['nome']]} Toggle={handleToggle} id={item['nome']} name={item['nome']} graduacao={treino(item['nome'], item['habilidade'])} mod={modificadores[`${item}Mod`]}/>
+          <Pericias key={index} check={isChecked[item['nome']]} Toggle={handleToggle} id={item['nome']} name={item['nome']} graduacao={treino(item['nome'], item['habilidade'])} mod={modificadores[`${item}Mod`]} handleFunc={InputChangeInt}/>
         )}
       </section>
     </div>

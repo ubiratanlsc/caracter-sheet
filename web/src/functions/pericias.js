@@ -7,7 +7,7 @@ import { useModificador } from './modificador';
 
 export const usePericias = () => {
  const [isChecked, setChecked] = useState({
-  Acrobacia: true,
+  Acrobacia: false,
   Adestrar_Animais: false,
   Atletismo: false,
   Atuação: false,

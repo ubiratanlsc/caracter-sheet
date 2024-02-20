@@ -24,6 +24,29 @@ function App() {
       int: 10, intPen: 0, intBon: 0,
       sab: 10, sabPen: 0, sabBon: 0,
       car: 10, carPen: 0, carBon: 0,
+    },
+   pericias:{
+    acrobacia:{ valor: false, outros: 0 },
+    adestrar_animais:{ valor : false, outros: 0 },
+    atletismo:{ valor: false, outros: 0 },
+    atuacao1:{ valor : false, outros: 0 },
+    atuacao2:{ valor : false, outros: 0 },
+    cavalgar:{ valor : false, outros: 0 },
+    conhecimento1:{ valor : false, outros: 0 },
+    conhecimento2:{ valor : false, outros: 0},
+    cura: { valor : false, outros:0},
+    diplomacia: { valor : false, outros:0},
+    enganacao: { valor : false, outros:0},
+    furtividade: { valor : false, outros:0},
+    identificar_magia: { valor : false, outros:0},
+    iniciativa: { valor : false, outros:0},
+    intimidacao: { valor : false, outros:0},
+    ladinagem: { valor : false, outros:0},
+    obter_informacao: { valor : false, outros:0},
+    oficio1: { valor : false, outros:0},
+    oficio2: { valor : false, outros:0},
+    percepcao: { valor : false, outros:0},
+    sobrevivencia: { valor : false, outros:0}
     }
   })
   // console.log(personagem);
